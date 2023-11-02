@@ -30,7 +30,9 @@ export default function Login() {
 
             <form>
               <div>
-                <label htmlFor="email-address">Email address</label>
+                <label htmlFor="email-address" className="bg-sky-700 px-4 py-2 text-white">
+                  Email address
+                </label>
                 <input
                   id="email-address"
                   name="email"
@@ -58,7 +60,7 @@ export default function Login() {
               </div>
             </form>
 
-            <p className="text-sm text-white text-center">
+            <p className="text-center text-sm text-white">
               No account yet? <NavLink to={paths.REGISTER}>Sign up</NavLink>
             </p>
           </div>
