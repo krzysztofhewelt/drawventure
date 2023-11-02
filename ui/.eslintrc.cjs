@@ -16,7 +16,9 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    "prettier/prettier": ["error"],
+    "prettier/prettier": ["error", {
+      endOfLine: 'auto'
+    }],
 		"unused-imports/no-unused-imports": "error",
 		"unused-imports/no-unused-vars": [
       "warn",

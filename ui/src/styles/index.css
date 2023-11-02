@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.link_primary {
+  @apply text-primary hover:underline;
+}
+
+.link_secondary {
+  @apply text-black hover:underline;
+}
+
+.button_primary {
+  @apply bg-primary rounded-normal text-white hover:cursor-pointer disabled:cursor-not-allowed;
+}
+
+.button_secondary {
+  @apply bg-secondary rounded-normal text-white hover:cursor-pointer disabled:cursor-not-allowed;
+}
+
+@layer base {
+  body {
+    @apply bg-background font-sans;
+  }
+}
