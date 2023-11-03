@@ -1,11 +1,13 @@
-import IconStar from '../assets/icons/Star.tsx';
+import Star from '@icons/Star.svg?react';
 
-const DifficultyLevel = ({ difficulty }: { difficulty: 0 | 1 | 2 | 3 }) => {
+const DifficultyLevel = ({ difficulty }: { difficulty: number }) => {
+  const availableLevels = [1, 2, 3];
+
   return (
-    <div className="flex h-7 gap-2">
-      <IconStar className={difficulty >= 1 ? 'fill-primary' : 'fill-white'} />
-      <IconStar className={difficulty >= 2 ? 'fill-primary' : 'fill-white'} />
-      <IconStar className={difficulty >= 3 ? 'fill-primary' : 'fill-white'} />
+    <div className="flex h-7 w-20 gap-2">
+      {availableLevels.map((el) => {
+        return <Star className={difficulty >= el ? 'fill-primary' : 'fill-white'} key={el} />;
+      })}
     </div>
   );
 };

@@ -11,11 +11,11 @@
 }
 
 .button_primary {
-  @apply bg-primary rounded-normal text-white hover:cursor-pointer disabled:cursor-not-allowed;
+  @apply rounded-normal bg-primary p-2 font-medium text-white hover:cursor-pointer disabled:cursor-not-allowed;
 }
 
 .button_secondary {
-  @apply bg-secondary rounded-normal text-white hover:cursor-pointer disabled:cursor-not-allowed;
+  @apply rounded-normal bg-secondary p-2 font-medium text-white hover:cursor-pointer disabled:cursor-not-allowed;
 }
 
 @layer base {

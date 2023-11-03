@@ -22,8 +22,10 @@
     "baseUrl": "./src",
     "paths": {
       "@lib/*": ["libraries/*"],
-      "@routes/*": ["routes/*"]
-    }
+      "@routes/*": ["routes/*"],
+      "@icons/*": ["assets/icons/*"]
+    },
+    "types": ["vite-plugin-svgr/client"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

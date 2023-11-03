@@ -1,14 +1,14 @@
-import React from 'react';
+import { MouseEventHandler } from 'react';
 
 interface Props {
   type: 'button' | 'submit' | 'reset' | undefined;
   text: string;
   className?: string;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button: React.FC<Props> = ({ type, onClick, text, className, disabled }) => {
+const Button = ({ type, onClick, text, className, disabled }: Props) => {
   return (
     <button onClick={onClick} type={type} className={className} disabled={disabled}>
       {text}

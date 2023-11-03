@@ -4,6 +4,7 @@ import Register from '../pages/register/register';
 import Home from '../pages/home/home';
 import AuthRoute from './authRoute';
 import paths from './paths';
+import Tests from '../pages/tests/tests.tsx';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,6 +14,7 @@ export const router = createBrowserRouter(
       </Route>
       <Route element={<Login />} path={paths.LOGIN} />
       <Route element={<Register />} path={paths.REGISTER} />
+      <Route element={<Tests />} path={paths.TESTS} />
     </Route>
   )
 );

@@ -12,6 +12,9 @@ export default {
         primaryHigh: '#FFEDD8',
         secondary: '#9BCDD2',
       },
+      boxShadow: {
+        extra: '-5px 0px 10px 0px #00000040',
+      },
     },
   },
   plugins: ['prettier-plugin-tailwindcss'],

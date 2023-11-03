@@ -1,7 +1,6 @@
-// CardHeader
-// CardDescription
+import { MouseEventHandler, ReactNode } from 'react';
 
-import React, { ReactNode } from 'react';
+// TODO: ability to style subcomponents: CardHeader, CardImage, CardDescription
 
 interface Props {
   className: string;
@@ -9,16 +8,20 @@ interface Props {
   description: ReactNode;
   image: string;
   imagePosition: 'left' | 'right';
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-const Card: React.FC<Props> = ({ header, description, image, imagePosition, className }) => {
+const Card = ({ header, description, image, imagePosition, className, onClick }: Props) => {
   return (
     <div
       className={
-        imagePosition == 'left' ? 'flex flex-row gap-4 ' + className : 'flex flex-row-reverse gap-4 ' + className
+        imagePosition == 'left'
+          ? 'flex flex-row gap-4 p-2 ' + className
+          : 'flex flex-row-reverse gap-4 p-2 ' + className
       }
+      onClick={onClick}
     >
-      <img src={image} alt={image} className="w-1/3" />
+      <img src={image} alt={image} className="my-auto h-3/4 w-1/3" />
       <div className="flex w-full flex-col p-4">
         <h3 className="text-2xl font-bold">{header}</h3>
         <p>{description}</p>
