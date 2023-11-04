@@ -3,6 +3,10 @@ import Return from '@icons/Return.svg?react';
 import Rubber from '@icons/Rubber.svg?react';
 import Pencil from '@icons/Pencil.svg?react';
 import Palette from '@icons/Palette.svg?react';
+import Download from '@icons/Download.svg?react';
+
+// TODO: add event emiter when choose color (state) for each elements and onClick other elements (react-canvas interaction)
+// TODO: integrate with react-sketch-canvas (emiters?)
 
 interface Props {
   icon: ReactNode;
@@ -41,7 +45,7 @@ const ToolboxColorPickerElement = ({ color, colorClass }: { color: string; color
   return <div className={`h-10 w-10 rounded-full ${colorClass} hover:cursor-pointer`} id={color}></div>;
 };
 
-const Toolbox = () => {
+const Toolbox = ({ canDownload }: { canDownload: boolean }) => {
   const iconStyle: string = 'h-6 fill-inherit';
   const [colorPicker, setColorPicker] = useState(false);
 
@@ -63,6 +67,7 @@ const Toolbox = () => {
           </div>
         )}
       </div>
+      {canDownload && <ToolboxItem icon={<Download className={iconStyle} />} text="Pobierz" active={false} />}
     </div>
   );
 };

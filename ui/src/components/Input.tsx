@@ -6,11 +6,12 @@ interface Props {
   name: string;
   value?: string;
   required?: boolean;
+  autoComplete?: string;
   children?: ReactNode;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Input = ({ type, name, placeholder, value, required, children, onChange }: Props) => {
+const Input = ({ type, name, placeholder, value, required, autoComplete, children, onChange }: Props) => {
   const style =
     'w-full rounded-normal border-2 bg-white p-2 placeholder:text-gray-500 focus:border-primary focus:outline-none';
 
@@ -24,6 +25,7 @@ const Input = ({ type, name, placeholder, value, required, children, onChange }:
         value={value}
         required={required}
         onChange={onChange}
+        autoComplete={autoComplete}
       />
       {children}
     </div>
@@ -32,6 +34,7 @@ const Input = ({ type, name, placeholder, value, required, children, onChange }:
 
 Input.defaultProps = {
   required: true,
+  autoComplete: 'on',
 };
 
 export default Input;

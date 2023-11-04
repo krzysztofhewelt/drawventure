@@ -9,6 +9,7 @@ import TaskCard from '../../components/TaskCard.tsx';
 import Drawer from '../../components/Drawer.tsx';
 import Hamburger from '@icons/Hamburger.svg?react';
 import { useState } from 'react';
+import { ReactSketchCanvas } from 'react-sketch-canvas';
 
 export default function Tests() {
   const [drawer, setDrawer] = useState(false);
@@ -25,7 +26,13 @@ export default function Tests() {
       />
 
       <Drawer isOpen={drawer} />
-      <Toolbox />
+      <div className="flex flex-col items-center justify-center">
+        <Toolbox canDownload={true} />
+        <div className="h-[500px] w-1/2">
+          <ReactSketchCanvas strokeWidth={4} strokeColor="red" />
+        </div>
+      </div>
+
       <div className="w-1/2">
         <Input type="email" name="email" placeholder="email" />
         <Password placeholder="hasło" name="password" />
@@ -34,7 +41,7 @@ export default function Tests() {
       <DifficultyLevel difficulty={1} />
       <PickerDifficultyLevel active={1} onClick={handleChange} />
       <Card
-        className="shadow-extra h-[200px] w-1/4 rounded-normal bg-white hover:cursor-pointer"
+        className="h-[200px] w-1/4 rounded-normal bg-white shadow-extra hover:cursor-pointer"
         header={<span className="font-bold">Dostępne zadania</span>}
         description="Podejmij kolejne wyzwanie w rysowaniu"
         image="http://localhost:5173/src/assets/icons/Lapa.svg"
@@ -47,7 +54,7 @@ export default function Tests() {
         taskName="Okrąg"
         difficulty={1}
         description="Twoim zadaniem jest narysowanie okręgu"
-        image="http://localhost:5173/src/assets/icons/Lapa.svg"
+        image="http://localhost:5173/src/assets/icons/DogPaw.svg"
         onClick={() => alert('Inne przejście...')}
       />
       <div>

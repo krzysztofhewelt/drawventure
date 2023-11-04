@@ -1,6 +1,9 @@
 import React, { SetStateAction, useEffect, useState } from 'react';
 import DifficultyLevel from './DifficultyLevel.tsx';
 
+// TODO: fix TS types and DUPLICATES
+// TODO: onClick callback difficulty level will filter tasks with selected level
+
 const PickerDifficultyLevel: React.FC<{ active: 0 | 1 | 2 | 3; onClick: React.MouseEvent<HTMLDivElement, number> }> = ({
   active,
   onClick,

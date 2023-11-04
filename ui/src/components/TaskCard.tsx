@@ -25,7 +25,7 @@ const TaskCard = ({ taskName, difficulty, description, image, onClick }: Props) 
         image={image}
         imagePosition="left"
       />
-      <div className="absolute right-0 top-0 -z-10 h-full w-3/4 rounded-normal bg-red-500 bg-secondary"></div>
+      <div className="absolute right-0 top-0 -z-10 h-full w-3/4 rounded-normal bg-secondary"></div>
     </div>
   );
 };

@@ -30,6 +30,7 @@ const Password = ({ placeholder, name, required, onChange }: Props) => {
         type={type}
         required={required}
         onChange={onChange}
+        autoComplete="off"
         children={
           <div className="absolute right-0 top-0 my-auto mr-2 mt-2 w-7 cursor-pointer" onClick={toggleType}>
             {type == 'text' && <img src={HidePassword} alt="hide password" />}
