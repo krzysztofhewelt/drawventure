@@ -9,8 +9,6 @@ import Password from '../../components/Password.tsx';
 import Button from '../../components/Button.tsx';
 import Dog from '@icons/Dog.svg';
 
-// TODO: style register page
-
 export default function Register() {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
@@ -19,7 +17,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [error, setError] = useState('');
-  const [createUserWithEmailAndPassword, _user, loading, errors] = useCreateUserWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, _user] = useCreateUserWithEmailAndPassword(auth);
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

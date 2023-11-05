@@ -1,20 +1,10 @@
 import Card from '../../components/Card.tsx';
 import Drawer from '../../components/Drawer.tsx';
-import { useState } from 'react';
-import Hamburger from '@icons/Hamburger.svg?react';
 
 export default function Home() {
-  const [drawer, setDrawer] = useState(false);
-
   return (
     <>
-      <Hamburger
-        className="fixed right-0 top-0 z-50 w-24 cursor-pointer fill-primary p-4"
-        onClick={() => setDrawer(!drawer)}
-      />
-
-      <Drawer isOpen={drawer} />
-
+      <Drawer />
       <div className="flex flex-col gap-10 p-14">
         <div className="flex flex-col gap-0 leading-none">
           Hej

@@ -7,7 +7,7 @@ interface Props {
   difficulty: number;
   description: string;
   image: string;
-  onClick?: MouseEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLDivElement>;
 }
 
 const TaskCard = ({ taskName, difficulty, description, image, onClick }: Props) => {
@@ -24,6 +24,7 @@ const TaskCard = ({ taskName, difficulty, description, image, onClick }: Props) 
         description={description}
         image={image}
         imagePosition="left"
+        onClick={onClick}
       />
       <div className="absolute right-0 top-0 -z-10 h-full w-3/4 rounded-normal bg-secondary"></div>
     </div>

@@ -1,30 +1,45 @@
 import Logo from '@icons/Logo.svg';
 import { logout } from '@lib/firebase';
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+import Hamburger from '@icons/Hamburger.svg?react';
+import paths from '@routes/paths.ts';
+import { useState } from 'react';
+import { useOutsideClick } from '@lib/clickOutside.tsx';
 
-// TODO: click outside will close drawer
+const Drawer = () => {
+  const [drawer, setDrawer] = useState(false);
+  const drawerRef = useOutsideClick(() => {
+    setDrawer(false);
+  });
 
-const Drawer = ({ isOpen }: { isOpen: boolean }) => {
-  const style =
-    'right-0 top-0 fixed transition duration-150 ease-in-out z-40 flex min-h-screen w-1/2 flex-col gap-4 rounded-normal bg-primaryLight p-16 text-xl';
+  const style = classNames('drawer', drawer && 'translate-x-0 shadow-extra', !drawer && 'translate-x-full');
 
   return (
-    <div className={isOpen ? 'translate-x-0 shadow-extra ' + style : 'translate-x-full ' + style}>
-      <img src={Logo} alt="logo" className="mb-12 w-full" />
-      <a href="" className="link_secondary">
-        Zadania zrealizowane
-      </a>
-      <a href="" className="link_secondary">
-        Podejmij się nowego wyzwania
-      </a>
-      <a href="" className="link_secondary">
-        Plac zabaw
-      </a>
-      <a href="" onClick={logout} className="link_secondary">
-        Wyloguj
-      </a>
-      <a href="" className="link_secondary">
-        Polityka prywatności
-      </a>
+    <div ref={drawerRef}>
+      <Hamburger
+        className="fixed right-0 z-50 w-20 cursor-pointer fill-primary p-4"
+        onClick={() => setDrawer(!drawer)}
+      />
+
+      <div className={style}>
+        <img src={Logo} alt="logo" className="mb-12 w-full" />
+        <Link className="link_secondary" to={paths.LOGIN}>
+          Zadania zrealizowane
+        </Link>
+        <Link className="link_secondary" to={paths.LOGIN}>
+          Podejmij się nowego wyzwania
+        </Link>
+        <Link className="link_secondary" to={paths.LOGIN}>
+          Plac zabaw
+        </Link>
+        <a href="" onClick={logout} className="link_secondary">
+          Wyloguj
+        </a>
+        <Link className="link_secondary" to={paths.LOGIN}>
+          Polityka prywatności
+        </Link>
+      </div>
     </div>
   );
 };

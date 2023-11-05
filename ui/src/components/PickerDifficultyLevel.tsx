@@ -1,38 +1,44 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
+import { MouseEventHandler } from 'react';
 import DifficultyLevel from './DifficultyLevel.tsx';
+import classNames from 'classnames';
 
-// TODO: fix TS types and DUPLICATES
-// TODO: onClick callback difficulty level will filter tasks with selected level
+interface PickerDifficultyLevelProps {
+  active: number;
+  onDifficultyLevelChange: (difficultyLevel: number) => void;
+}
 
-const PickerDifficultyLevel: React.FC<{ active: 0 | 1 | 2 | 3; onClick: React.MouseEvent<HTMLDivElement, number> }> = ({
-  active,
-  onClick,
-}) => {
-  const [state, setState] = useState(0);
-  // const levels = ['Spokojny', 'Zabawa', 'Wymagający'];
+interface PickerDifficultyLevelItemProps {
+  difficulty: number;
+  difficultyName: string;
+  onClick: MouseEventHandler;
+  active: boolean;
+}
 
-  useEffect(() => onClick(state), [onClick, state]);
+const PickerDifficultyLevelItem = ({ difficulty, difficultyName, onClick, active }: PickerDifficultyLevelItemProps) => {
+  return (
+    <div className="flex flex-1 flex-col items-center justify-center" onClick={onClick}>
+      <DifficultyLevel difficulty={difficulty} />
+      <div className={classNames(active && 'font-bold')}>{difficultyName}</div>
+    </div>
+  );
+};
 
-  const editState = (element: SetStateAction<number>) => {
-    setState(element);
-  };
+const PickerDifficultyLevel = ({ active, onDifficultyLevelChange }: PickerDifficultyLevelProps) => {
+  const difficultyLevels = ['Spokojny', 'Zabawa', 'Wymagający'];
 
   return (
     <div className="flex w-1/4 cursor-pointer select-none gap-4 divide-x-2 divide-secondary text-sm">
-      <div className="flex flex-1 flex-col items-center gap-2" onClick={() => editState(1)}>
-        <DifficultyLevel difficulty={1} />
-        <div className={active == 1 ? 'font-bold' : ''}>Spokojny</div>
-      </div>
-
-      <div className="flex flex-1 flex-col items-center gap-2" onClick={() => editState(2)}>
-        <DifficultyLevel difficulty={2} />
-        <div className={active == 2 ? 'font-bold' : ''}>Zabawa</div>
-      </div>
-
-      <div className="flex flex-1 flex-col items-center gap-2" onClick={() => editState(3)}>
-        <DifficultyLevel difficulty={3} />
-        <div className={active == 3 ? 'font-bold' : ''}>Wymagający</div>
-      </div>
+      {difficultyLevels.map((el, index) => {
+        return (
+          <PickerDifficultyLevelItem
+            difficulty={index + 1}
+            onClick={() => onDifficultyLevelChange(index + 1)}
+            active={active == index + 1}
+            difficultyName={el}
+            key={index}
+          />
+        );
+      })}
     </div>
   );
 };

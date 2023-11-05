@@ -9,9 +9,10 @@ interface Props {
   value?: string;
   required?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  error?: string;
 }
 
-const Password = ({ placeholder, name, required, onChange }: Props) => {
+const Password = ({ placeholder, name, required, onChange, error }: Props) => {
   const [type, setType] = useState('password');
 
   const toggleType = () => {
@@ -31,6 +32,7 @@ const Password = ({ placeholder, name, required, onChange }: Props) => {
         required={required}
         onChange={onChange}
         autoComplete="off"
+        error={error}
         children={
           <div className="absolute right-0 top-0 my-auto mr-2 mt-2 w-7 cursor-pointer" onClick={toggleType}>
             {type == 'text' && <img src={HidePassword} alt="hide password" />}

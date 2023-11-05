@@ -1,28 +1,27 @@
 import { MouseEventHandler, ReactNode } from 'react';
-
-// TODO: ability to style subcomponents: CardHeader, CardImage, CardDescription
+import classNames from 'classnames';
 
 interface Props {
   className: string;
   header: ReactNode;
-  description: ReactNode;
+  description: string;
   image: string;
   imagePosition: 'left' | 'right';
-  onClick?: MouseEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLDivElement>;
 }
 
 const Card = ({ header, description, image, imagePosition, className, onClick }: Props) => {
+  const style = classNames(
+    className,
+    'flex gap-4 p-2',
+    imagePosition == 'left' && 'flex-row',
+    imagePosition == 'right' && 'flex-row-reverse'
+  );
+
   return (
-    <div
-      className={
-        imagePosition == 'left'
-          ? 'flex flex-row gap-4 p-2 ' + className
-          : 'flex flex-row-reverse gap-4 p-2 ' + className
-      }
-      onClick={onClick}
-    >
+    <div className={style} onClick={onClick}>
       <img src={image} alt={image} className="my-auto h-3/4 w-1/3" />
-      <div className="flex w-full flex-col p-4">
+      <div className="w-full p-4">
         <h3 className="text-2xl font-bold">{header}</h3>
         <p>{description}</p>
       </div>

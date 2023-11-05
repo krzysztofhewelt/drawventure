@@ -1,4 +1,3 @@
-// TODO: make click outside event
 import { useEffect, useRef } from 'react';
 
 export const useOutsideClick = (callback: () => void) => {
