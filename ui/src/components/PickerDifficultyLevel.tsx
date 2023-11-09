@@ -1,6 +1,7 @@
 import { MouseEventHandler } from 'react';
 import DifficultyLevel from './DifficultyLevel.tsx';
 import classNames from 'classnames';
+import { difficultyLevel } from '../consts/difficultyLevel.ts';
 
 interface PickerDifficultyLevelProps {
   active: number;
@@ -24,18 +25,16 @@ const PickerDifficultyLevelItem = ({ difficulty, difficultyName, onClick, active
 };
 
 const PickerDifficultyLevel = ({ active, onDifficultyLevelChange }: PickerDifficultyLevelProps) => {
-  const difficultyLevels = ['Spokojny', 'Zabawa', 'Wymagający'];
-
   return (
     <div className="flex w-1/4 cursor-pointer select-none gap-4 divide-x-2 divide-secondary text-sm">
-      {difficultyLevels.map((el, index) => {
+      {Object.entries(difficultyLevel).map(([key, value]) => {
         return (
           <PickerDifficultyLevelItem
-            difficulty={index + 1}
-            onClick={() => onDifficultyLevelChange(index + 1)}
-            active={active == index + 1}
-            difficultyName={el}
-            key={index}
+            difficulty={Number(key)}
+            onClick={() => onDifficultyLevelChange(Number(key))}
+            active={active == Number(key)}
+            difficultyName={value}
+            key={key}
           />
         );
       })}

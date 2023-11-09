@@ -6,6 +6,9 @@ import Palette from '@icons/Palette.svg?react';
 import Download from '@icons/Download.svg?react';
 import classNames from 'classnames';
 import { useOutsideClick } from '@lib/clickOutside.tsx';
+import { drawingMode } from '../consts/drawingMode.ts';
+import { DrawMode } from '../types/types.ts';
+import { t } from 'i18next';
 
 interface ToolboxProps {
   canDownload: boolean;
@@ -48,6 +51,7 @@ const ToolboxItem = ({ icon, text, active, onClick }: ToolboxItemProps) => {
 };
 
 const ToolboxColorPicker = ({ onColorChange, handleClose }: ToolboxColorPickerProps) => {
+  // to jako jeszcze jeden typ czy obiekt tutaj?? Wtedy jak ma być typ (ColorClass) z typu (Color)?
   const colors = {
     red: 'bg-red-500',
     green: 'bg-green-500',
@@ -68,19 +72,21 @@ const ToolboxColorPicker = ({ onColorChange, handleClose }: ToolboxColorPickerPr
 };
 
 const ToolboxColorPickerElement = ({
-  color,
-  colorClass,
+  color, // typ Color?
+  colorClass, // typ ColorClass?
   onColorChange,
   handleClose,
 }: ToolboxColorPickerElementProps) => {
+  const handleChange = (color: string) => {
+    onColorChange(color);
+    handleClose();
+  };
+
   return (
     <div
       className={classNames('h-10 w-10 rounded-full hover:cursor-pointer', colorClass)}
       id={color}
-      onClick={() => {
-        onColorChange(color);
-        handleClose();
-      }}
+      onClick={() => handleChange(color)}
     ></div>
   );
 };
@@ -88,31 +94,31 @@ const ToolboxColorPickerElement = ({
 const Toolbox = ({ canDownload, onErase, onRevert, onDraw, onColorChange, onDownload }: ToolboxProps) => {
   const iconStyle: string = 'h-6 fill-inherit';
   const [colorPicker, setColorPicker] = useState(false);
-  const [activeMode, setActiveMode] = useState('draw');
+  const [activeMode, setActiveMode] = useState<DrawMode>(drawingMode.DRAW);
   const colorPickerRef = useOutsideClick(() => {
     setColorPicker(false);
   });
 
   return (
     <div className="flex gap-x-6">
-      <ToolboxItem icon={<Return className={iconStyle} />} text="Cofnij" onClick={onRevert} active={false} />
+      <ToolboxItem icon={<Return className={iconStyle} />} text={t('toolbox.undo')} onClick={onRevert} active={false} />
       <ToolboxItem
         icon={<Rubber className={iconStyle} />}
-        text="Gumka"
+        text={t('toolbox.erase')}
         onClick={() => {
           onErase();
-          setActiveMode('erase');
+          setActiveMode(drawingMode.ERASE);
         }}
-        active={activeMode == 'erase'}
+        active={activeMode == drawingMode.ERASE}
       />
       <ToolboxItem
         icon={<Pencil className={iconStyle} />}
-        text="Ołówek"
+        text={t('toolbox.draw')}
         onClick={() => {
           onDraw();
-          setActiveMode('draw');
+          setActiveMode(drawingMode.DRAW);
         }}
-        active={activeMode == 'draw'}
+        active={activeMode == drawingMode.DRAW}
       />
       <div ref={colorPickerRef} className="relative">
         <ToolboxItem
@@ -120,7 +126,7 @@ const Toolbox = ({ canDownload, onErase, onRevert, onDraw, onColorChange, onDown
           onClick={() => {
             setColorPicker(!colorPicker);
           }}
-          text="Kolor"
+          text={t('toolbox.color')}
           active={false}
         />
         {colorPicker && (
@@ -130,7 +136,12 @@ const Toolbox = ({ canDownload, onErase, onRevert, onDraw, onColorChange, onDown
         )}
       </div>
       {canDownload && (
-        <ToolboxItem icon={<Download className={iconStyle} />} onClick={onDownload} text="Pobierz" active={false} />
+        <ToolboxItem
+          icon={<Download className={iconStyle} />}
+          onClick={onDownload}
+          text={t('toolbox.download')}
+          active={false}
+        />
       )}
     </div>
   );

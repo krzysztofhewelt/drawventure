@@ -1,15 +1,15 @@
-import PickerDifficultyLevel from '../../components/PickerDifficultyLevel.tsx';
-import Card from '../../components/Card.tsx';
-import DifficultyLevel from '../../components/DifficultyLevel.tsx';
-import Password from '../../components/Password.tsx';
-import Button from '../../components/Button.tsx';
-import Input from '../../components/Input.tsx';
-import TaskCard from '../../components/TaskCard.tsx';
-import DrawingArea from '../../components/DrawingArea.tsx';
-import Drawer from '../../components/Drawer.tsx';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import paths from '@routes/paths.ts';
+import Drawer from '@components/Drawer.tsx';
+import DrawingArea from '@components/DrawingArea.tsx';
+import Password from '@components/Password.tsx';
+import Input from '@components/Input.tsx';
+import DifficultyLevel from '@components/DifficultyLevel.tsx';
+import PickerDifficultyLevel from '@components/PickerDifficultyLevel.tsx';
+import Card from '@components/Card.tsx';
+import Button from '@components/Button.tsx';
+import TaskCard from '@components/TaskCard.tsx';
 
 export default function Tests() {
   const [difficultyLevel, setDifficultyLevel] = useState(1);
@@ -21,9 +21,7 @@ export default function Tests() {
   return (
     <div className="flex flex-col gap-4">
       <Drawer />
-
       <DrawingArea />
-
       <div className="w-1/2">
         <Input type="email" name="email" placeholder="email" error="Podano błędny adres email" />
         <Password placeholder="hasło" name="password" />

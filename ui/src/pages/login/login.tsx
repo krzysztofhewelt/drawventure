@@ -5,9 +5,10 @@ import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Logo from '@icons/Logo.svg';
 import Dog from '@icons/Dog.svg';
-import Input from '../../components/Input.tsx';
-import Button from '../../components/Button.tsx';
-import Password from '../../components/Password.tsx';
+import Input from '@components/Input.tsx';
+import Password from '@components/Password.tsx';
+import Button from '@components/Button.tsx';
+import { t } from 'i18next';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -32,23 +33,34 @@ export default function Login() {
         <img src={Logo} className="mx-auto my-auto w-3/4" alt="logo" />
 
         <form className="flex w-full flex-col gap-3" onSubmit={handleLogin}>
-          <Input type="email" name="email" required placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-          <Password name="password" placeholder="hasło" required onChange={(e) => setPassword(e.target.value)} />
+          <Input
+            type="email"
+            name="email"
+            required
+            placeholder={t('authenticateForms.email')}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Password
+            name="password"
+            placeholder={t('authenticateForms.password')}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
           <div className="text-right">
             <NavLink className="link_secondary" to={paths.LOGIN}>
-              Nie pamiętasz hasła?
+              {t('authenticateForms.forgotPassword')}
             </NavLink>
           </div>
 
           <div>
-            <Button type="submit" className="button_primary w-full p-2" text="Zaloguj" />
+            <Button type="submit" className="button_primary w-full p-2" text={t('button.login')} />
           </div>
 
           <p className="text-center">
-            Nie posiadasz konta?{' '}
+            {t('authenticateForms.dontHaveAccount')}{' '}
             <NavLink className="link_primary" to={paths.REGISTER}>
-              Zarejestruj się
+              {t('authenticateForms.register')}
             </NavLink>
           </p>
         </form>

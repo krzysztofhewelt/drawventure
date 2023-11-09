@@ -9,7 +9,8 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths(), svgr()],
   resolve: {
     alias: {
-      '@icons': resolve(__dirname, 'src/assets/icons'),
+      '@icons': resolve(__dirname, './src/assets/icons'),
+      '@components': resolve(__dirname, './src/components'),
     },
   },
 });

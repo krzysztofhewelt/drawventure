@@ -1,0 +1,66 @@
+{
+  "button": {
+    "login": "Zaloguj",
+    "register": "Zarejestruj",
+    "submit": "Wyślij",
+    "task": {
+      "checkOther": "Sprawdź inne zadania",
+      "tryAgain": "Spróbuj ponownie",
+      "checkTasks": "Podejmij się zadania"
+    }
+  },
+  "toolbox": {
+    "undo": "Cofnij",
+    "erase": "Gumka",
+    "draw": "Ołówek",
+    "color": "Kolor",
+    "download": "Pobierz"
+  },
+  "drawer": {
+    "tasksFinished": "Zadania zrealizowane",
+    "checkTasks": "Podejmij się nowego zadania",
+    "sandbox": "Plac zabaw",
+    "logout": "Wyloguj",
+    "privacyPolicy": "Polityka prywatności"
+  },
+  "authenticateForms": {
+    "email": "email",
+    "password": "hasło",
+    "repeatPassword": "powtórz hasło",
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się",
+    "forgotPassword": "Nie pamiętasz hasła?",
+    "dontHaveAccount": "Nie posiadasz konta?",
+    "alreadyRegister": "Jesteś już zarejestrowany?"
+  },
+  "mainPageCards": {
+    "availableTasksTitle": "Dostępne zadania",
+    "availableTasksDescription": "Podejmij kolejne wyzwanie w rysowaniu",
+    "finishedTasksTitle": "Zrealizowane zadania",
+    "finishedTasksDescription": "Zobacz jak poradziłeś sobie z poprzednimi zadaniami",
+    "sandboxTitle": "Po prostu maluj",
+    "sandboxDescription": "Chcesz po prostu się pobawić?"
+  },
+  "tasks": {
+    "difficultyLevels": {
+      "easy": "Spokojny",
+      "medium": "Zabawa",
+      "hard": "Wymagający"
+    },
+    "goodJob": "Świetna robota",
+    "sketchingTime": "Zrobiłeś to w czasie: {{time}}s",
+    "sketchingAccuracy": "Dokładność odwzorowania: {{accuracy}}%",
+    "checkSelfResults": "Sprawdź swoje wyniki",
+    "tryAgain": "Spróbuj jeszcze raz",
+    "noTasksFinished": "Jeszcze nie udało Ci się zrealizować żadnego zadania"
+  },
+  "header": {
+    "welcome": "Hej",
+    "mainPage": "Co dziś zmalujesz?",
+    "taskToDoList": "Na jaki poziom dziś się czujesz?",
+    "sketching": "Powodzenia!",
+    "taskFinished": "Wykonałeś zadanie",
+    "taskFinishedList": "Tak poradziłeś sobie z zadaniami",
+    "sandbox": "Baw się dobrze!"
+  }
+}

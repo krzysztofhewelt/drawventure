@@ -1,6 +1,6 @@
-import Toolbox from './Toolbox.tsx';
 import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas';
 import React, { useState } from 'react';
+import Toolbox from './Toolbox.tsx';
 
 const DrawingArea = () => {
   const canvas = React.createRef<ReactSketchCanvasRef>();
@@ -45,7 +45,7 @@ const DrawingArea = () => {
         />
         <ReactSketchCanvas ref={canvas} strokeWidth={4} eraserWidth={12} strokeColor={color} />
       </div>
-      <img src={imageURI} alt="your sketch" className="h-96 w-96" />
+      <img src={imageURI} alt="sketch" className="h-96 w-96" />
     </>
   );
 };
