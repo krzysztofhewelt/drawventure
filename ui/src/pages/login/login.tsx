@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import { auth, loginInWithEmailAndPassword } from '@lib/firebase';
 import paths from '@routes/paths';
-import { NavLink, Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Logo from '@icons/Logo.svg';
+import Dog from '@icons/Dog.svg';
+import Input from '@components/Input.tsx';
+import Password from '@components/Password.tsx';
+import Button from '@components/Button.tsx';
+import { t } from 'i18next';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -10,7 +16,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [user] = useAuthState(auth);
 
-  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     loginInWithEmailAndPassword(email, password).then((_userCredential) => {
       navigate(paths.ROOT);
@@ -22,50 +28,45 @@ export default function Login() {
   }
 
   return (
-    <>
-      <main>
-        <section>
-          <div>
-            <p> FocusApp </p>
+    <main>
+      <div className="mx-auto grid h-full max-h-screen w-full grid-rows-3 items-center text-center lg:w-1/2">
+        <img src={Logo} className="mx-auto my-auto w-3/4" alt="logo" />
 
-            <form>
-              <div>
-                <label htmlFor="email-address" className="bg-sky-700 px-4 py-2 text-white">
-                  Email address
-                </label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="Email address"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
+        <form className="flex w-full flex-col gap-3" onSubmit={handleLogin}>
+          <Input
+            type="email"
+            name="email"
+            required
+            placeholder={t('authenticateForms.email')}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Password
+            name="password"
+            placeholder={t('authenticateForms.password')}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-
-              <div>
-                <button onClick={handleLogin}>Login</button>
-              </div>
-            </form>
-
-            <p className="text-center text-sm text-white">
-              No account yet? <NavLink to={paths.REGISTER}>Sign up</NavLink>
-            </p>
+          <div className="text-right">
+            <NavLink className="link_secondary" to={paths.LOGIN}>
+              {t('authenticateForms.forgotPassword')}
+            </NavLink>
           </div>
-        </section>
-      </main>
-    </>
+
+          <div>
+            <Button type="submit" className="button_primary w-full p-2" text={t('button.login')} />
+          </div>
+
+          <p className="text-center">
+            {t('authenticateForms.dontHaveAccount')}{' '}
+            <NavLink className="link_primary" to={paths.REGISTER}>
+              {t('authenticateForms.register')}
+            </NavLink>
+          </p>
+        </form>
+
+        <img src={Dog} className="mx-auto h-full" alt="logo" />
+      </div>
+    </main>
   );
 }
