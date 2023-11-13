@@ -1,7 +1,17 @@
-import i18next from '../i18n';
-
-export const difficultyLevel = {
-  1: i18next.t('tasks.difficultyLevels.easy'),
-  2: i18next.t('tasks.difficultyLevels.medium'),
-  3: i18next.t('tasks.difficultyLevels.hard'),
+export const difficultyLevels = {
+  easy: {
+    id: 1,
+    value: 1,
+    translationKey: 'tasks.difficultyLevels.easy',
+  },
+  medium: {
+    id: 2,
+    value: 2,
+    translationKey: 'tasks.difficultyLevels.medium',
+  },
+  hard: {
+    id: 3,
+    value: 3,
+    translationKey: 'tasks.difficultyLevels.hard',
+  },
 } as const;

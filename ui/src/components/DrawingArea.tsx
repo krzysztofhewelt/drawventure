@@ -1,13 +1,17 @@
 import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas';
 import React, { useState } from 'react';
 import Toolbox from './Toolbox.tsx';
+import { Color } from 'types/types';
+import { colors } from 'consts/color.ts';
 
 const DrawingArea = () => {
   const canvas = React.createRef<ReactSketchCanvasRef>();
-  const [color, setColor] = useState('red');
+  const [color, setColor] = useState<Color>(colors.red);
   const [imageURI, setImageURI] = useState('');
 
-  const handleColorChange = (newColor: string) => {
+  console.log(colors.red)
+
+  const handleColorChange = (newColor: Color) => {
     setColor(newColor);
   };
 

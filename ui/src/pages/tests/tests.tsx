@@ -14,7 +14,6 @@ import TaskCard from '@components/TaskCard.tsx';
 export default function Tests() {
   const [difficultyLevel, setDifficultyLevel] = useState(1);
   const handleChange = (inputListState: number) => {
-    console.log('Difficulty level = ', inputListState);
     setDifficultyLevel(inputListState);
   };
 

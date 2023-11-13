@@ -5,17 +5,18 @@ import Pencil from '@icons/Pencil.svg?react';
 import Palette from '@icons/Palette.svg?react';
 import Download from '@icons/Download.svg?react';
 import classNames from 'classnames';
-import { useOutsideClick } from '@lib/clickOutside.tsx';
-import { drawingMode } from '../consts/drawingMode.ts';
-import { DrawMode } from '../types/types.ts';
+import { useOutsideClick } from '@lib/clickOutside';
+import { drawingMode } from '../consts/drawingMode';
+import { Color, DrawMode } from '../types/types';
 import { t } from 'i18next';
+import { colors } from 'consts/color';
 
 interface ToolboxProps {
   canDownload: boolean;
   onErase: () => void;
   onRevert: () => void;
   onDraw: () => void;
-  onColorChange: (newColor: string) => void;
+  onColorChange: (newColor: Color) => void;
   onDownload: () => void;
 }
 
@@ -27,14 +28,13 @@ interface ToolboxItemProps {
 }
 
 interface ToolboxColorPickerProps {
-  onColorChange: (newColor: string) => void;
+  onColorChange: (newColor: Color) => void;
   handleClose: () => void;
 }
 
 interface ToolboxColorPickerElementProps {
-  color: string;
-  colorClass: string;
-  onColorChange: (newColor: string) => void;
+  color: Color;
+  onColorChange: (newColor: Color) => void;
   handleClose: () => void;
 }
 
@@ -51,40 +51,21 @@ const ToolboxItem = ({ icon, text, active, onClick }: ToolboxItemProps) => {
 };
 
 const ToolboxColorPicker = ({ onColorChange, handleClose }: ToolboxColorPickerProps) => {
-  // to jako jeszcze jeden typ czy obiekt tutaj?? Wtedy jak ma być typ (ColorClass) z typu (Color)?
-  const colors = {
-    red: 'bg-red-500',
-    green: 'bg-green-500',
-    blue: 'bg-blue-500',
-    orange: 'bg-orange-500',
-    yellow: 'bg-yellow-300',
-  };
-
-  return Object.entries(colors).map(([key, value]) => (
-    <ToolboxColorPickerElement
-      color={key}
-      colorClass={value}
-      key={key}
-      onColorChange={onColorChange}
-      handleClose={handleClose}
-    />
+  return Object.values(colors).map((color) => (
+    <ToolboxColorPickerElement color={color} key={color} onColorChange={onColorChange} handleClose={handleClose} />
   ));
 };
 
-const ToolboxColorPickerElement = ({
-  color, // typ Color?
-  colorClass, // typ ColorClass?
-  onColorChange,
-  handleClose,
-}: ToolboxColorPickerElementProps) => {
-  const handleChange = (color: string) => {
+const ToolboxColorPickerElement = ({ color, onColorChange, handleClose }: ToolboxColorPickerElementProps) => {
+  const handleChange = (color: Color) => {
     onColorChange(color);
     handleClose();
   };
 
   return (
     <div
-      className={classNames('h-10 w-10 rounded-full hover:cursor-pointer', colorClass)}
+      className={classNames('h-10 w-10 rounded-full hover:cursor-pointer')}
+      style={{ backgroundColor: color }}
       id={color}
       onClick={() => handleChange(color)}
     ></div>
