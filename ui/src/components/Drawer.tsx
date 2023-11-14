@@ -17,28 +17,35 @@ const Drawer = () => {
   const style = classNames('drawer', isOpen && 'translate-x-0 shadow-extra', !isOpen && 'translate-x-full');
 
   return (
-    <div ref={drawerRef}>
-      <Hamburger className="fixed right-0 z-50 w-20 cursor-pointer fill-primary p-4" onClick={() => setOpen(!isOpen)} />
+    <>
+      {isOpen && <div className="fixed h-full w-full bg-background opacity-75"></div>}
 
-      <div className={style}>
-        <img src={Logo} alt="logo" className="mb-12 w-full" />
-        <Link className="link_secondary" to={paths.LOGIN}>
-          {t('drawer.tasksFinished')}
-        </Link>
-        <Link className="link_secondary" to={paths.LOGIN}>
-          {t('drawer.checkTasks')}
-        </Link>
-        <Link className="link_secondary" to={paths.LOGIN}>
-          {t('drawer.sandbox')}
-        </Link>
-        <a href="" onClick={logout} className="link_secondary">
-          {t('drawer.logout')}
-        </a>
-        <Link className="link_secondary" to={paths.LOGIN}>
-          {t('drawer.privacyPolicy')}
-        </Link>
+      <div ref={drawerRef}>
+        <Hamburger
+          className="fixed right-0 z-50 w-20 cursor-pointer fill-primary p-4"
+          onClick={() => setOpen(!isOpen)}
+        />
+
+        <div className={style}>
+          <img src={Logo} alt="logo" className="mb-12 w-full" />
+          <Link className="link_secondary" to={paths.LOGIN}>
+            {t('drawer.tasksFinished')}
+          </Link>
+          <Link className="link_secondary" to={paths.LOGIN}>
+            {t('drawer.checkTasks')}
+          </Link>
+          <Link className="link_secondary" to={paths.LOGIN}>
+            {t('drawer.sandbox')}
+          </Link>
+          <a href="" onClick={logout} className="link_secondary">
+            {t('drawer.logout')}
+          </a>
+          <Link className="link_secondary" to={paths.LOGIN}>
+            {t('drawer.privacyPolicy')}
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

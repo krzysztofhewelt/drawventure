@@ -62,5 +62,12 @@
     "taskFinished": "Wykonałeś zadanie",
     "taskFinishedList": "Tak poradziłeś sobie z zadaniami",
     "sandbox": "Baw się dobrze!"
+  },
+  "validation": {
+    "email": "Adres email jest nieprawidłowy",
+    "password": "Hasło musi zawierać co najmniej 8 znaków, w tym jedną dużą i małą literę, jedną liczbę i znak specjalny",
+    "passwordConfirmation": {
+      "oneOf": "Hasła się nie zgadzają"
+    }
   }
 }

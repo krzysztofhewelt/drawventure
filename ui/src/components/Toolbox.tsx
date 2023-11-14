@@ -64,7 +64,7 @@ const ToolboxColorPickerElement = ({ color, onColorChange, handleClose }: Toolbo
 
   return (
     <div
-      className={classNames('h-10 w-10 rounded-full hover:cursor-pointer')}
+      className="h-10 w-10 rounded-full hover:cursor-pointer"
       style={{ backgroundColor: color }}
       id={color}
       onClick={() => handleChange(color)}

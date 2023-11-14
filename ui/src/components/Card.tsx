@@ -13,9 +13,9 @@ interface Props {
 const Card = ({ header, description, image, imagePosition, className, onClick }: Props) => {
   const style = classNames(
     className,
-    'flex gap-4 p-2',
-    imagePosition == 'left' && 'flex-row',
-    imagePosition == 'right' && 'flex-row-reverse'
+    'flex flex-col gap-4 p-2',
+    imagePosition == 'left' && 'sm:flex-row',
+    imagePosition == 'right' && 'sm:flex-row-reverse'
   );
 
   return (
