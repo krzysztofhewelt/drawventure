@@ -1,13 +1,14 @@
 import Star from '@icons/Star.svg?react';
 import classNames from 'classnames';
+import { difficultyLevels } from 'consts/difficultyLevel';
 
 const DifficultyLevel = ({ difficulty }: { difficulty: number }) => {
-  const availableLevels = [1, 2, 3];
-
   return (
     <div className="flex h-7 w-20 gap-2">
-      {availableLevels.map((el) => {
-        return <Star className={classNames(difficulty >= el && 'fill-primary')} key={el} />;
+      {Object.values(difficultyLevels).map((difficultyLevel) => {
+        return (
+          <Star className={classNames(difficulty >= difficultyLevel.id && 'fill-primary')} key={difficultyLevel.id} />
+        );
       })}
     </div>
   );

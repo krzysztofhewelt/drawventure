@@ -26,7 +26,7 @@
   "authenticateForms": {
     "email": "email",
     "password": "hasło",
-    "repeatPassword": "powtórz hasło",
+    "confirmPassword": "powtórz hasło",
     "login": "Zaloguj się",
     "register": "Zarejestruj się",
     "forgotPassword": "Nie pamiętasz hasła?",
@@ -64,10 +64,10 @@
     "sandbox": "Baw się dobrze!"
   },
   "validation": {
+    "required": "To pole jest wymagane",
+    "error": "Coś poszło nie tak... Spróbuj później",
     "email": "Adres email jest nieprawidłowy",
     "password": "Hasło musi zawierać co najmniej 8 znaków, w tym jedną dużą i małą literę, jedną liczbę i znak specjalny",
-    "passwordConfirmation": {
-      "oneOf": "Hasła się nie zgadzają"
-    }
+    "passwordConfirmation": "Hasła się nie zgadzają"
   }
 }

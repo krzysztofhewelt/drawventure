@@ -1,24 +1,38 @@
-import { useState } from 'react';
 import { auth, loginInWithEmailAndPassword } from '@lib/firebase';
 import paths from '@routes/paths';
 import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Logo from '@icons/Logo.svg';
 import Dog from '@icons/Dog.svg';
-import Input from '@components/Input.tsx';
-import Password from '@components/Password.tsx';
-import Button from '@components/Button.tsx';
+import Input from '@components/Input';
+import Password from '@components/Password';
+import Button from '@components/Button';
 import { t } from 'i18next';
+import Form from '@components/Form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { regex } from 'consts/regex';
+
+type LoginCredentials = {
+  email: string;
+  password: string;
+};
 
 export default function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [user] = useAuthState(auth);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    loginInWithEmailAndPassword(email, password).then((_userCredential) => {
+  const schema = yup.object().shape({
+    email: yup.string().required().email().matches(regex.email, 'validation.email'),
+    password: yup.string().required().matches(regex.password, 'validation.password'),
+  });
+  const methods = useForm<LoginCredentials>({
+    resolver: yupResolver(schema),
+  });
+
+  const handleLogin: SubmitHandler<LoginCredentials> = (data) => {
+    loginInWithEmailAndPassword(data.email, data.password).then((_userCredential) => {
       navigate(paths.ROOT);
     });
   };
@@ -32,20 +46,9 @@ export default function Login() {
       <div className="mx-auto grid h-full max-h-screen w-full grid-rows-3 items-center text-center lg:w-1/2">
         <img src={Logo} className="mx-auto my-auto w-3/4" alt="logo" />
 
-        <form className="flex w-full flex-col gap-3" onSubmit={handleLogin}>
-          <Input
-            type="email"
-            name="email"
-            required
-            placeholder={t('authenticateForms.email')}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Password
-            name="password"
-            placeholder={t('authenticateForms.password')}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <Form formMethods={methods} className="flex w-full flex-col gap-3" onSubmit={handleLogin}>
+          <Input name="email" placeholder={t('authenticateForms.email')} />
+          <Password name="password" placeholder="hasło" />
 
           <div className="text-right">
             <NavLink className="link_secondary" to={paths.LOGIN}>
@@ -53,9 +56,7 @@ export default function Login() {
             </NavLink>
           </div>
 
-          <div>
-            <Button type="submit" className="button_primary w-full p-2" text={t('button.login')} />
-          </div>
+          <Button type="submit" className="button_primary" text={t('button.login')} />
 
           <p className="text-center">
             {t('authenticateForms.dontHaveAccount')}{' '}
@@ -63,9 +64,9 @@ export default function Login() {
               {t('authenticateForms.register')}
             </NavLink>
           </p>
-        </form>
+        </Form>
 
-        <img src={Dog} className="mx-auto h-full" alt="logo" />
+        <img src={Dog} className="z-0 mx-auto h-full" alt="logo" />
       </div>
     </main>
   );
