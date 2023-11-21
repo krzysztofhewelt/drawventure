@@ -19,14 +19,16 @@ type LoginCredentials = {
   password: string;
 };
 
+// can be moved to separate file
+const schema = yup.object().shape({
+  email: yup.string().required().email().matches(regex.email, 'validation.email'),
+  password: yup.string().required().matches(regex.password, 'validation.password'),
+});
+
 export default function Login() {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
-  const schema = yup.object().shape({
-    email: yup.string().required().email().matches(regex.email, 'validation.email'),
-    password: yup.string().required().matches(regex.password, 'validation.password'),
-  });
   const methods = useForm<LoginCredentials>({
     resolver: yupResolver(schema),
   });
