@@ -12,7 +12,7 @@ interface Props {
 
 const TaskCard = ({ taskName, difficulty, description, image, onClick }: Props) => {
   return (
-    <div className="relative h-[200px] w-full cursor-pointer">
+    <div className="relative w-full cursor-pointer">
       <Card
         header={
           <div className="flex justify-between">
@@ -26,7 +26,7 @@ const TaskCard = ({ taskName, difficulty, description, image, onClick }: Props) 
         imagePosition="left"
         onClick={onClick}
       />
-      <div className="absolute right-0 top-0 -z-10 h-full w-[90%] rounded-normal bg-secondary"></div>
+      <div className="absolute right-0 top-0 -z-10 h-full w-full rounded-normal bg-secondary sm:w-[90%]"></div>
     </div>
   );
 };

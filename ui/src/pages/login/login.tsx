@@ -10,27 +10,20 @@ import Button from '@components/Button';
 import { t } from 'i18next';
 import Form from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { regex } from 'consts/regex';
+import { loginRegisterSchema } from 'consts/validationSchemas';
 
 type LoginCredentials = {
   email: string;
   password: string;
 };
 
-// can be moved to separate file
-const schema = yup.object().shape({
-  email: yup.string().required().email().matches(regex.email, 'validation.email'),
-  password: yup.string().required().matches(regex.password, 'validation.password'),
-});
-
 export default function Login() {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
   const methods = useForm<LoginCredentials>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(loginRegisterSchema),
   });
 
   const handleLogin: SubmitHandler<LoginCredentials> = (data) => {

@@ -10,14 +10,12 @@ import { t } from 'i18next';
 import Form from '@components/Form';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import Password from '@components/Password';
-import { regex } from 'consts/regex';
+import { loginRegisterSchema } from 'consts/validationSchemas';
 
 type RegisterData = {
   email: string;
   password: string;
-  confirmPassword: string;
 };
 
 export default function Register() {
@@ -26,17 +24,8 @@ export default function Register() {
 
   const [createUserWithEmailAndPassword, _user] = useCreateUserWithEmailAndPassword(auth);
 
-  const schema = yup.object().shape({
-    email: yup.string().required().email().matches(regex.email, 'validation.email'),
-    password: yup.string().required().matches(regex.password, 'validation.password'),
-    confirmPassword: yup
-      .string()
-      .required()
-      .oneOf([yup.ref('password')], 'validation.passwordConfirmation'),
-  });
-
   const methods = useForm<RegisterData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(loginRegisterSchema),
   });
 
   const handleRegister: SubmitHandler<RegisterData> = async (data) => {
@@ -60,7 +49,6 @@ export default function Register() {
         <Form formMethods={methods} className="flex w-full flex-col gap-3" onSubmit={handleRegister}>
           <Input name="email" placeholder={t('authenticateForms.email')} />
           <Password name="password" placeholder={t('authenticateForms.password')} />
-          <Password name="confirmPassword" placeholder={t('authenticateForms.confirmPassword')} />
 
           <Button type="submit" className="button_primary" text={t('button.register')} />
 

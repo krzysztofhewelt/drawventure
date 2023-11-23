@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex max-h-screen min-h-screen flex-col gap-10">
+      <div className="flex max-h-screen flex-col gap-10">
         <Card
           className="flex-1 rounded-normal bg-white shadow-extra hover:cursor-pointer"
           header={t('mainPageCards.availableTasksTitle')}
@@ -24,7 +24,7 @@ export default function Home() {
           description={t('mainPageCards.finishedTasksDescription')}
           image="http://localhost:5173/src/assets/icons/PlayfulCatOne.svg"
           imagePosition="right"
-          onClick={() => alert('Przejscie do zrealizowanych zadań')}
+          onClick={() => navigate(paths.TASKSDONE)}
         />
 
         <Card

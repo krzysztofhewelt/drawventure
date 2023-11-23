@@ -54,20 +54,20 @@
     "tryAgain": "Spróbuj jeszcze raz",
     "noTasksFinished": "Jeszcze nie udało Ci się zrealizować żadnego zadania"
   },
-  "header": {
+  "pageNames": {
     "welcome": "Hej",
-    "mainPage": "Co dziś zmalujesz?",
-    "taskToDoList": "Na jaki poziom dziś się czujesz?",
-    "sketching": "Powodzenia!",
+    "main": "Co dziś zmalujesz?",
+    "tasksTodo": "Na jaki poziom dziś się czujesz?",
+    "taskDraw": "Powodzenia!",
     "taskFinished": "Wykonałeś zadanie",
     "taskFinishedList": "Tak poradziłeś sobie z zadaniami",
-    "sandbox": "Baw się dobrze!"
+    "playground": "Baw się dobrze!"
   },
   "validation": {
-    "required": "To pole jest wymagane",
     "error": "Coś poszło nie tak... Spróbuj później",
+    "required": "To pole jest wymagane",
     "email": "Adres email jest nieprawidłowy",
     "password": "Hasło musi zawierać co najmniej 8 znaków, w tym jedną dużą i małą literę, jedną liczbę i znak specjalny",
-    "passwordConfirmation": "Hasła się nie zgadzają"
+    "newSamePassword": "Nowe hasło musi być inne od obecnego"
   }
 }

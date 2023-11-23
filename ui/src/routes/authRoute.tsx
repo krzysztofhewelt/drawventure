@@ -21,7 +21,7 @@ export default function AuthRoute() {
   }
 
   return (
-    <main className="min-h-screen p-10">
+    <main className="min-h-screen p-6">
       <Header />
       <Drawer />
       <Outlet />

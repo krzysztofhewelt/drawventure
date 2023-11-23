@@ -6,6 +6,6 @@ export default {
   TASKSTODO: '/tasks',
   TASKSDONE: '/tasks/done',
   TASKDRAW: '/tasks/:id',
-  TESTS: '/tests',
+  TASKFINISHED: '/tasks/finish',
   PRIVACY: '/privacy',
 };

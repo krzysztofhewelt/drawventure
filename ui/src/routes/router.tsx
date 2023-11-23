@@ -3,11 +3,12 @@ import Login from '../pages/login/login';
 import Register from '../pages/register/register';
 import AuthRoute from './authRoute';
 import paths from './paths';
-import Tests from '../pages/tests/tests';
 import Home from '../pages/home/home';
 import Playground from '../pages/playground/playground';
-import TaskList from 'pages/tasks/tasklist';
 import TaskDraw from 'pages/tasks/taskdraw';
+import TasksTodo from 'pages/tasks/taskstodo';
+import TasksDone from 'pages/tasks/tasksdone';
+import Privacy from 'pages/privacy/privacy';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,12 +16,13 @@ export const router = createBrowserRouter(
       <Route element={<AuthRoute />}>
         <Route element={<Home />} index />
         <Route element={<Playground />} path={paths.PLAYGROUND} />
-        <Route element={<TaskList />} path={paths.TASKSTODO} />
+        <Route element={<TasksTodo />} path={paths.TASKSTODO} />
+        <Route element={<TasksDone />} path={paths.TASKSDONE} />
         <Route element={<TaskDraw />} path={paths.TASKDRAW} />
+        <Route element={<Privacy />} path={paths.PRIVACY} />
       </Route>
       <Route element={<Login />} path={paths.LOGIN} />
       <Route element={<Register />} path={paths.REGISTER} />
-      <Route element={<Tests />} path={paths.TESTS} />
     </Route>
   )
 );

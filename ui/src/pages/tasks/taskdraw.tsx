@@ -3,6 +3,7 @@ import DrawingArea from '@components/DrawingArea';
 import { t } from 'i18next';
 import Button from '@components/Button';
 import TaskCard from '@components/TaskCard';
+import Timer from '@components/Timer';
 
 export default function TaskDraw() {
   const { id } = useParams();
@@ -18,12 +19,12 @@ export default function TaskDraw() {
   };
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="mx-auto flex h-screen w-3/4 flex-col gap-10">
       <DrawingArea />
 
-      {id}
-
-      <div className="text-right text-2xl font-bold">TIMER</div>
+      <div className="text-right text-2xl font-bold">
+        <Timer />
+      </div>
 
       <Button type="submit" className="button_primary w-full p-2" text={t('button.submit')} />
 
