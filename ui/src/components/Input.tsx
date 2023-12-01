@@ -16,7 +16,7 @@ const Input = ({ name, type, placeholder, autoComplete, children }: Props) => {
     register,
     formState: { errors },
   } = useFormContext();
-  const style = classNames('input', children && 'pr-11', errors[name] && 'border border-red-500');
+  const style = classNames('input', children && '!pr-11', errors[name] && 'border border-red-500');
 
   return (
     <div className="relative w-full">

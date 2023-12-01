@@ -1,8 +1,15 @@
 import * as yup from 'yup';
-import { regex } from 'consts/regex';
 
-const email = yup.string().required().email().matches(regex.email, 'validation.email');
-const password = yup.string().required().matches(regex.password, 'validation.password');
+const email = yup.string().required().email();
+const password = yup
+  .string()
+  .required()
+  .min(8, 'validation.password.min')
+  .max(128, 'validation.password.max')
+  .matches(/[a-z]+/, 'validation.password.oneLowercase')
+  .matches(/[A-Z]+/, 'validation.password.oneUppercase')
+  .matches(/[@$!%*#?&]+/, 'validation.password.oneSpecial')
+  .matches(/\d+/, 'validation.password.oneNumber');
 
 export const loginRegisterSchema = yup.object().shape({
   email: email,
@@ -11,7 +18,7 @@ export const loginRegisterSchema = yup.object().shape({
 
 export const changePasswordSchema = yup.object().shape({
   password: password,
-  newPassword: password.notOneOf([yup.ref('password')], 'validation.newSamePassword'),
+  newPassword: password.notOneOf([yup.ref('password')], 'validation.password.newSamePassword'),
 });
 
 export const sendResetPasswordEmailSchema = yup.object().shape({

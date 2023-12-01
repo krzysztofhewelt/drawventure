@@ -7,7 +7,7 @@ import { downloadImage } from '@lib/downloadImage';
 
 const DrawingArea = () => {
   const canvas = React.createRef<ReactSketchCanvasRef>();
-  const [color, setColor] = useState<Color>(colors.red);
+  const [color, setColor] = useState<Color>(colors.black);
 
   const handleColorChange = (newColor: Color) => {
     setColor(newColor);

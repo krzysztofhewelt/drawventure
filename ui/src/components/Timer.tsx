@@ -1,35 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useTimer } from '@lib/timer';
 
 const Timer = () => {
-  const [minutes, setMinutes] = useState('00');
-  const [seconds, setSeconds] = useState('00');
+  const time = useTimer(new Date().getTime());
+  const dateFormatter = new Intl.DateTimeFormat('pl', { minute: '2-digit', second: '2-digit' });
 
-  const start = Date.now();
-
-  const getTime = () => {
-    const diff = Date.now() - start;
-
-    setMinutes(
-      Math.floor((diff / 1000 / 60) % 60)
-        .toString()
-        .padStart(2, '0')
-    );
-    setSeconds(
-      Math.floor((diff / 1000) % 60)
-        .toString()
-        .padStart(2, '0')
-    );
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => getTime(), 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  // const testDate = new Date().setTime(60000);
+  // const datee = new Intl.NumberFormat('pl-PL', { style: 'unit', unit: 'second', unitDisplay: 'short' }).format(testDate/1000);
 
   return (
     <>
-      {minutes}:{seconds}s
+      {dateFormatter.format(time)}
     </>
   );
 };

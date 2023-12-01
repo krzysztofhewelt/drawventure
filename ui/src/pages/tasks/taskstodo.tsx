@@ -29,7 +29,7 @@ export default function TasksTodo() {
       name: 'Trójkąt',
       description: 'Twoim zadaniem jest narysowanie przedstawionej figury',
       image: 'http://localhost:5173/src/assets/icons/Circle.svg',
-      difficulty: 2,
+      difficulty: 1,
     },
     {
       id: 4,

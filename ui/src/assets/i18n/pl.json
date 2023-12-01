@@ -67,7 +67,14 @@
     "error": "Coś poszło nie tak... Spróbuj później",
     "required": "To pole jest wymagane",
     "email": "Adres email jest nieprawidłowy",
-    "password": "Hasło musi zawierać co najmniej 8 znaków, w tym jedną dużą i małą literę, jedną liczbę i znak specjalny",
-    "newSamePassword": "Nowe hasło musi być inne od obecnego"
+    "password": {
+      "min": "Hasło musi zawierać co najmniej 8 znaków",
+      "max": "Hasło nie może być dłuższe niż 128 znaków",
+      "oneLowercase": "Hasło musi zawierać co najmniej jedną małą literę",
+      "oneUppercase": "Hasło musi zawierać co najmniej jedną dużą literę",
+      "oneSpecial": "Hasło musi zawierać co najmniej jeden znak specjalny",
+      "oneNumber": "Hasło musi zawierać co najmniej jedną cyfrę",
+      "newSamePassword": "Hasło musi różnić się od starego hasła"
+    }
   }
 }
