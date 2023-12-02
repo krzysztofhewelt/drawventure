@@ -3,9 +3,9 @@ export default {
   LOGIN: '/login',
   REGISTER: '/register',
   PLAYGROUND: '/playground',
-  TASKSTODO: '/tasks',
-  TASKSDONE: '/tasks/done',
-  TASKDRAW: '/tasks/:id',
-  TASKFINISHED: '/tasks/finish',
+  TASKS_TODO: '/tasks',
+  TASKS_DONE: '/tasks/done',
+  TASK_DRAW: '/tasks/:id',
+  TASK_FINISHED: '/tasks/finish',
   PRIVACY: '/privacy',
 };

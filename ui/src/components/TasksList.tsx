@@ -35,7 +35,7 @@ const TasksList = ({ tasks }: { tasks: Task[] }) => {
               description={el.description}
               image={el.image}
               key={el.id}
-              onClick={() => navigate(generatePath(paths.TASKDRAW, { id: el.id }))}
+              onClick={() => navigate(generatePath(paths.TASK_DRAW, { id: el.id }))}
             />
           );
         })}

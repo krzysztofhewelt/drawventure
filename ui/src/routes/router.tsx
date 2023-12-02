@@ -16,9 +16,9 @@ export const router = createBrowserRouter(
       <Route element={<AuthRoute />}>
         <Route element={<Home />} index />
         <Route element={<Playground />} path={paths.PLAYGROUND} />
-        <Route element={<TasksTodo />} path={paths.TASKSTODO} />
-        <Route element={<TasksDone />} path={paths.TASKSDONE} />
-        <Route element={<TaskDraw />} path={paths.TASKDRAW} />
+        <Route element={<TasksTodo />} path={paths.TASKS_TODO} />
+        <Route element={<TasksDone />} path={paths.TASKS_DONE} />
+        <Route element={<TaskDraw />} path={paths.TASK_DRAW} />
         <Route element={<Privacy />} path={paths.PRIVACY} />
       </Route>
       <Route element={<Login />} path={paths.LOGIN} />

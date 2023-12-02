@@ -61,8 +61,8 @@ const Drawer = () => {
               </>
             }
           />
-          <DrawerLink path={paths.TASKSDONE} textKey="drawer.tasksFinished" onClick={closeDrawer} />
-          <DrawerLink path={paths.TASKSTODO} textKey="drawer.checkTasks" onClick={closeDrawer} />
+          <DrawerLink path={paths.TASKS_DONE} textKey="drawer.tasksFinished" onClick={closeDrawer} />
+          <DrawerLink path={paths.TASKS_TODO} textKey="drawer.checkTasks" onClick={closeDrawer} />
           <DrawerLink path={paths.PLAYGROUND} textKey="drawer.sandbox" onClick={closeDrawer} />
           <a href="" className="link_secondary" onClick={logout}>
             {t('drawer.logout')}

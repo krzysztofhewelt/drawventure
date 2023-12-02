@@ -2,9 +2,9 @@ import paths from '@routes/paths';
 
 export const pageNames = {
   [paths.ROOT]: 'pageNames.main',
-  [paths.TASKSTODO]: 'pageNames.tasksTodo',
-  [paths.TASKDRAW]: 'pageNames.taskDraw',
-  [paths.TASKFINISHED]: 'pageNames.taskFinished',
-  [paths.TASKSDONE]: 'pageNames.taskFinishedList',
+  [paths.TASKS_TODO]: 'pageNames.tasksTodo',
+  [paths.TASK_DRAW]: 'pageNames.taskDraw',
+  [paths.TASK_FINISHED]: 'pageNames.taskFinished',
+  [paths.TASKS_DONE]: 'pageNames.taskFinishedList',
   [paths.PLAYGROUND]: 'pageNames.playground',
 } as const;

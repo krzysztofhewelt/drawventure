@@ -15,7 +15,7 @@ export default function Home() {
           description={t('mainPageCards.availableTasksDescription')}
           image="http://localhost:5173/src/assets/icons/DogPaw.svg"
           imagePosition="right"
-          onClick={() => navigate(paths.TASKSTODO)}
+          onClick={() => navigate(paths.TASKS_TODO)}
         />
 
         <Card
@@ -24,7 +24,7 @@ export default function Home() {
           description={t('mainPageCards.finishedTasksDescription')}
           image="http://localhost:5173/src/assets/icons/PlayfulCatOne.svg"
           imagePosition="right"
-          onClick={() => navigate(paths.TASKSDONE)}
+          onClick={() => navigate(paths.TASKS_DONE)}
         />
 
         <Card
