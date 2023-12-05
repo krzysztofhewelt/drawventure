@@ -7,6 +7,7 @@ import Timer from '@components/Timer';
 
 export default function TaskDraw() {
   const { id } = useParams();
+  const startTime = new Date().getTime()
 
   // funkcja na pobranie tasku z firebase
 
@@ -18,6 +19,11 @@ export default function TaskDraw() {
     difficulty: 1,
   };
 
+  const handleSubmit = () => {
+    const date = new Date().getTime() - startTime
+    console.log(date)
+  }
+
   return (
     <div className="mx-auto flex w-3/4 flex-col gap-10">
       <div className="h-screen">
@@ -25,10 +31,10 @@ export default function TaskDraw() {
       </div>
 
       <div className="text-right text-2xl font-bold">
-        <Timer />
+        <Timer startTime={startTime} />
       </div>
 
-      <Button type="submit" className="button_primary w-full p-2" text={t('button.submit')} />
+      <Button type="submit" className="button_primary w-full p-2" text={t('button.submit')} onClick={handleSubmit} />
 
       <TaskCard taskName={task.name} difficulty={task.difficulty} description={task.description} image={task.image} />
     </div>
