@@ -112,7 +112,13 @@ const Toolbox = ({ canDownload, onErase, onRevert, onDraw, onColorChange, onDown
         />
         {colorPicker && (
           <div className="absolute z-50 flex flex-col gap-y-3 rounded-normal border border-slate-400 bg-background p-2 drop-shadow-md">
-            <ToolboxColorPicker onColorChange={onColorChange} handleClose={() => setColorPicker(false)} />
+            <ToolboxColorPicker
+              onColorChange={(el) => {
+                onColorChange(el);
+                setActiveMode(drawingMode.DRAW);
+              }}
+              handleClose={() => setColorPicker(false)}
+            />
           </div>
         )}
       </div>

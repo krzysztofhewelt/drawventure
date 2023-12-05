@@ -19,8 +19,10 @@ export default function TaskDraw() {
   };
 
   return (
-    <div className="mx-auto flex h-screen w-3/4 flex-col gap-10">
-      <DrawingArea />
+    <div className="mx-auto flex w-3/4 flex-col gap-10">
+      <div className="h-screen">
+        <DrawingArea />
+      </div>
 
       <div className="text-right text-2xl font-bold">
         <Timer />

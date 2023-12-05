@@ -8,6 +8,7 @@ import { downloadImage } from '@lib/downloadImage';
 const DrawingArea = () => {
   const canvas = React.createRef<ReactSketchCanvasRef>();
   const [color, setColor] = useState<Color>(colors.black);
+  const [colorBeforeErase, setColorBeforeErase] = useState<Color>(colors.black);
 
   const handleColorChange = (newColor: Color) => {
     setColor(newColor);
@@ -20,9 +21,12 @@ const DrawingArea = () => {
   };
 
   const handleErase = (enable: boolean) => {
-    const eraseMode = canvas.current?.eraseMode;
-
-    if (eraseMode) eraseMode(enable);
+    if (enable) {
+      setColorBeforeErase(color);
+      setColor(colors.white);
+    } else {
+      setColor(colorBeforeErase);
+    }
   };
 
   const handleDownload = async () => {
