@@ -26,7 +26,7 @@
   "authenticateForms": {
     "email": "email",
     "password": "hasło",
-    "repeatPassword": "powtórz hasło",
+    "confirmPassword": "powtórz hasło",
     "login": "Zaloguj się",
     "register": "Zarejestruj się",
     "forgotPassword": "Nie pamiętasz hasła?",
@@ -54,13 +54,27 @@
     "tryAgain": "Spróbuj jeszcze raz",
     "noTasksFinished": "Jeszcze nie udało Ci się zrealizować żadnego zadania"
   },
-  "header": {
+  "pageNames": {
     "welcome": "Hej",
-    "mainPage": "Co dziś zmalujesz?",
-    "taskToDoList": "Na jaki poziom dziś się czujesz?",
-    "sketching": "Powodzenia!",
+    "main": "Co dziś zmalujesz?",
+    "tasksTodo": "Na jaki poziom dziś się czujesz?",
+    "taskDraw": "Powodzenia!",
     "taskFinished": "Wykonałeś zadanie",
     "taskFinishedList": "Tak poradziłeś sobie z zadaniami",
-    "sandbox": "Baw się dobrze!"
+    "playground": "Baw się dobrze!"
+  },
+  "validation": {
+    "error": "Coś poszło nie tak... Spróbuj później",
+    "required": "To pole jest wymagane",
+    "email": "Adres email jest nieprawidłowy",
+    "password": {
+      "min": "Hasło musi zawierać co najmniej 8 znaków",
+      "max": "Hasło nie może być dłuższe niż 128 znaków",
+      "oneLowercase": "Hasło musi zawierać co najmniej jedną małą literę",
+      "oneUppercase": "Hasło musi zawierać co najmniej jedną dużą literę",
+      "oneSpecial": "Hasło musi zawierać co najmniej jeden znak specjalny",
+      "oneNumber": "Hasło musi zawierać co najmniej jedną cyfrę",
+      "newSamePassword": "Hasło musi różnić się od starego hasła"
+    }
   }
 }

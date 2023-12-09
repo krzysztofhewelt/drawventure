@@ -13,7 +13,7 @@ export default {
         normal: '10px',
       },
       boxShadow: {
-        extra: '-5px 0px 10px 0px #00000040',
+        extra: '0px 4px 5px 0px #00000040',
       },
     },
   },

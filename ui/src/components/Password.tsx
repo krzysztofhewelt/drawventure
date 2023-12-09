@@ -1,18 +1,15 @@
-import { ChangeEventHandler, useState } from 'react';
-import Input from './Input.tsx';
+import { useState } from 'react';
+import Input from './Input';
 import HidePassword from '../assets/icons/HidePassword.svg';
 import ShowPassword from '../assets/icons/ShowPassword.svg';
+import classNames from 'classnames';
 
 interface Props {
   placeholder: string;
   name: string;
-  value?: string;
-  required?: boolean;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-  error?: string;
 }
 
-const Password = ({ placeholder, name, required, onChange, error }: Props) => {
+const Password = ({ placeholder, name }: Props) => {
   const [type, setType] = useState('password');
 
   const toggleType = () => {
@@ -27,16 +24,13 @@ const Password = ({ placeholder, name, required, onChange, error }: Props) => {
     <>
       <Input
         name={name}
-        placeholder={placeholder}
         type={type}
-        required={required}
-        onChange={onChange}
+        placeholder={placeholder}
         autoComplete="off"
-        error={error}
         children={
           <div className="absolute right-0 top-0 my-auto mr-2 mt-2 w-7 cursor-pointer" onClick={toggleType}>
-            {type == 'text' && <img src={HidePassword} alt="hide password" />}
-            {type == 'password' && <img src={ShowPassword} alt="show password" />}
+            <img src={HidePassword} className={classNames(type === 'password' && 'hidden')} alt="hide password" />
+            <img src={ShowPassword} className={classNames(type === 'text' && 'hidden')} alt="show password" />
           </div>
         }
       />

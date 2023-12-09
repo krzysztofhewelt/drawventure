@@ -1,8 +1,8 @@
 import { MouseEventHandler } from 'react';
-import DifficultyLevel from './DifficultyLevel.tsx';
+import DifficultyLevel from './DifficultyLevel';
 import classNames from 'classnames';
-import { difficultyLevels } from '../consts/difficultyLevel.ts';
-import { useTranslation } from 'react-i18next';
+import { difficultyLevels } from 'consts/difficultyLevel';
+import { t } from 'i18next';
 
 interface PickerDifficultyLevelProps {
   active: number;
@@ -26,16 +26,14 @@ const PickerDifficultyLevelItem = ({ difficulty, difficultyName, onClick, active
 };
 
 const PickerDifficultyLevel = ({ active, onDifficultyLevelChange }: PickerDifficultyLevelProps) => {
-  const { t } = useTranslation();
-
   return (
-    <div className="flex w-1/4 cursor-pointer select-none gap-4 divide-x-2 divide-secondary text-sm">
+    <div className="flex w-full cursor-pointer select-none gap-4 divide-x-2 divide-secondary text-sm">
       {Object.values(difficultyLevels).map((difficultyLevel) => {
         return (
           <PickerDifficultyLevelItem
             difficulty={difficultyLevel.value}
-            onClick={() => onDifficultyLevelChange(Number(difficultyLevel.value))}
-            active={active === Number(difficultyLevel.value)}
+            onClick={() => onDifficultyLevelChange(difficultyLevel.value)}
+            active={active === difficultyLevel.value}
             difficultyName={t(difficultyLevel.translationKey)}
             key={difficultyLevel.id}
           />

@@ -18,6 +18,7 @@ const Button = ({ type, onClick, text, className, disabled }: Props) => {
 
 Button.defaultProps = {
   type: 'button',
+  className: 'button_secondary',
   disabled: false,
   text: 'button',
 };

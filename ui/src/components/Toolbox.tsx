@@ -6,8 +6,8 @@ import Palette from '@icons/Palette.svg?react';
 import Download from '@icons/Download.svg?react';
 import classNames from 'classnames';
 import { useOutsideClick } from '@lib/clickOutside';
-import { drawingMode } from '../consts/drawingMode';
-import { Color, DrawMode } from '../types/types';
+import { drawingMode } from 'consts/drawingMode';
+import { Color, DrawMode } from 'types/types';
 import { t } from 'i18next';
 import { colors } from 'consts/color';
 
@@ -64,7 +64,7 @@ const ToolboxColorPickerElement = ({ color, onColorChange, handleClose }: Toolbo
 
   return (
     <div
-      className={classNames('h-10 w-10 rounded-full hover:cursor-pointer')}
+      className="h-10 w-10 rounded-full hover:cursor-pointer"
       style={{ backgroundColor: color }}
       id={color}
       onClick={() => handleChange(color)}
@@ -112,7 +112,13 @@ const Toolbox = ({ canDownload, onErase, onRevert, onDraw, onColorChange, onDown
         />
         {colorPicker && (
           <div className="absolute z-50 flex flex-col gap-y-3 rounded-normal border border-slate-400 bg-background p-2 drop-shadow-md">
-            <ToolboxColorPicker onColorChange={onColorChange} handleClose={() => setColorPicker(false)} />
+            <ToolboxColorPicker
+              onColorChange={(el) => {
+                onColorChange(el);
+                setActiveMode(drawingMode.DRAW);
+              }}
+              handleClose={() => setColorPicker(false)}
+            />
           </div>
         )}
       </div>

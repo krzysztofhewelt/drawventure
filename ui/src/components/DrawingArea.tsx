@@ -1,15 +1,14 @@
 import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas';
 import React, { useState } from 'react';
-import Toolbox from './Toolbox.tsx';
+import Toolbox from './Toolbox';
 import { Color } from 'types/types';
-import { colors } from 'consts/color.ts';
+import { colors } from 'consts/color';
+import { downloadImage } from '@lib/downloadImage';
 
 const DrawingArea = () => {
   const canvas = React.createRef<ReactSketchCanvasRef>();
-  const [color, setColor] = useState<Color>(colors.red);
-  const [imageURI, setImageURI] = useState('');
-
-  console.log(colors.red)
+  const [color, setColor] = useState<Color>(colors.black);
+  const [colorBeforeErase, setColorBeforeErase] = useState<Color>(colors.black);
 
   const handleColorChange = (newColor: Color) => {
     setColor(newColor);
@@ -22,23 +21,26 @@ const DrawingArea = () => {
   };
 
   const handleErase = (enable: boolean) => {
-    const eraseMode = canvas.current?.eraseMode;
-
-    if (eraseMode) eraseMode(enable);
+    if (enable) {
+      setColorBeforeErase(color);
+      setColor(colors.white);
+    } else {
+      setColor(colorBeforeErase);
+    }
   };
 
   const handleDownload = async () => {
-    const downloadImg = canvas.current?.exportImage;
+    const image = canvas.current?.exportImage;
 
-    if (downloadImg) {
-      const exportedImageURI = await downloadImg('png');
-      setImageURI(exportedImageURI);
+    if (image) {
+      const exportedImageURI = await image('png');
+      downloadImage(exportedImageURI);
     }
   };
 
   return (
     <>
-      <div className="flex h-[600px] w-1/2 flex-col items-center">
+      <div className="flex h-full w-full flex-col items-center gap-2">
         <Toolbox
           onErase={() => handleErase(true)}
           onRevert={handleRevert}
@@ -47,9 +49,8 @@ const DrawingArea = () => {
           onDownload={handleDownload}
           canDownload={true}
         />
-        <ReactSketchCanvas ref={canvas} strokeWidth={4} eraserWidth={12} strokeColor={color} />
+        <ReactSketchCanvas ref={canvas} strokeWidth={5} eraserWidth={12} strokeColor={color} />
       </div>
-      <img src={imageURI} alt="sketch" className="h-96 w-96" />
     </>
   );
 };
