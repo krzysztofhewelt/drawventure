@@ -4,7 +4,6 @@
 - account activation and password reset pages
 - change password page
 - no tasks done information
-- fix Header pageNames match with params route
 - improve TaskCard description for showing results
 - react-query and requests to Firebase
 - loading view
@@ -13,3 +12,4 @@
 - colorful timer depends on best time
 - scoreboard to design and implementation
 - animations
+~~- fix Header pageNames match with params route~~
