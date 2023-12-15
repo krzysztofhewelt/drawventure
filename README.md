@@ -12,4 +12,4 @@
 - colorful timer depends on best time
 - scoreboard to design and implementation
 - animations
-~~- fix Header pageNames match with params route~~
+- ~~fix Header pageNames match with params route~~
