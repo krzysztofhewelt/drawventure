@@ -1,11 +1,9 @@
-import { useState, useRef, useEffect } from "react";
-
+import { useState, useRef, useEffect } from 'react';
 
 export const useTimer = (initialStartTime: number) => {
   const [startTime] = useState(initialStartTime);
   const interval = useRef<number>();
   const [time, setTime] = useState(new Date().getTime() - startTime);
-
 
   useEffect(() => {
     interval.current = setInterval(() => {

@@ -2,6 +2,8 @@
   "button": {
     "login": "Zaloguj",
     "register": "Zarejestruj",
+    "resetPassword": "Resetuj hasło",
+    "changePassword": "Zmień hasło",
     "submit": "Wyślij",
     "task": {
       "checkOther": "Sprawdź inne zadania",
@@ -20,18 +22,21 @@
     "tasksFinished": "Zadania zrealizowane",
     "checkTasks": "Podejmij się nowego zadania",
     "sandbox": "Plac zabaw",
+    "changePassword": "Zmiana hasła",
     "logout": "Wyloguj",
     "privacyPolicy": "Polityka prywatności"
   },
   "authenticateForms": {
     "email": "email",
     "password": "hasło",
-    "confirmPassword": "powtórz hasło",
+    "newPassword": "nowe hasło",
     "login": "Zaloguj się",
     "register": "Zarejestruj się",
     "forgotPassword": "Nie pamiętasz hasła?",
     "dontHaveAccount": "Nie posiadasz konta?",
-    "alreadyRegister": "Jesteś już zarejestrowany?"
+    "alreadyRegister": "Jesteś już zarejestrowany?",
+    "dontWantResetPassword": "Nie chcesz resetować hasła?",
+    "resetPasswordInformation": "Aby zresetować hasło, podaj adres email, na który stworzono konto. Następnie wyślemy email z linkiem do resetowania hasła."
   },
   "mainPageCards": {
     "availableTasksTitle": "Dostępne zadania",
@@ -48,11 +53,12 @@
       "hard": "Wymagający"
     },
     "goodJob": "Świetna robota",
-    "sketchingTime": "Zrobiłeś to w czasie: {{time}}s",
+    "sketchingTime": "Zrobiłeś to w czasie:",
     "sketchingAccuracy": "Dokładność odwzorowania: {{accuracy}}%",
     "checkSelfResults": "Sprawdź swoje wyniki",
     "tryAgain": "Spróbuj jeszcze raz",
-    "noTasksFinished": "Jeszcze nie udało Ci się zrealizować żadnego zadania"
+    "noTasksFinished": "Jeszcze nie udało Ci się zrealizować żadnego zadania",
+    "noTasks": "Brak zadań. Sprawdź inny poziom trudności."
   },
   "pageNames": {
     "welcome": "Hej",
@@ -61,7 +67,9 @@
     "taskDraw": "Powodzenia!",
     "taskFinished": "Wykonałeś zadanie",
     "taskFinishedList": "Tak poradziłeś sobie z zadaniami",
-    "playground": "Baw się dobrze!"
+    "playground": "Baw się dobrze!",
+    "privacy": "Polityka prywatności",
+    "changePassword": "Zmiana hasła"
   },
   "validation": {
     "error": "Coś poszło nie tak... Spróbuj później",
@@ -75,6 +83,29 @@
       "oneSpecial": "Hasło musi zawierać co najmniej jeden znak specjalny",
       "oneNumber": "Hasło musi zawierać co najmniej jedną cyfrę",
       "newSamePassword": "Hasło musi różnić się od starego hasła"
+    }
+  },
+  "firebase": {
+    "auth/invalid-login-credentials": "Podany email i/lub hasło są nieprawidłowe.",
+    "auth/wrong-password": "Podany email i/lub hasło są nieprawidłowe.",
+    "auth/too-many-requests": "Zbyt dużo nieudanych prób logowania. Spróbuj ponownie później.",
+    "auth/email-already-in-use": "Konto o podanym adresie email już istnieje.",
+    "auth/user-not-found": "Użytkownik o podanym adresie email nie istnieje.",
+    "auth/reset-email-successfully": "Wysłaliśmy na Twój adres email link do resetowania hasła.",
+    "auth/password-changed": "Hasło zostało zmienione.",
+    "auth/password-reset-successfully": "Hasło zostało zresetowane. Możesz się teraz zalogować",
+    "unknown-error": "Wystąpił błąd. Spróbuj ponownie później."
+  },
+  "miscellaneous": {
+    "loading": "Ładowanie...",
+    "goMainPage": "Przejdź do strony głównej",
+    "error": {
+      "notFound": "Podana strona nie została odnaleziona.",
+      "serverError": "Wystąpił błąd. Spróbuj ponownie później."
+    },
+    "time": {
+      "minutes": "min",
+      "seconds": "sek"
     }
   }
 }

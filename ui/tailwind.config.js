@@ -15,6 +15,15 @@ export default {
       boxShadow: {
         extra: '0px 4px 5px 0px #00000040',
       },
+      keyframes: {
+        'spin-loading': {
+          '0%, 25%': { transform: 'rotate(0deg)' },
+          '75%, 100%': { transform: 'rotate(360deg)' },
+        },
+      },
+      animation: {
+        'spin-loading': 'spin-loading 1000ms ease-in-out infinite',
+      },
     },
   },
   plugins: ['prettier-plugin-tailwindcss'],

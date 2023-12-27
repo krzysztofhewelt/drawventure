@@ -1,11 +1,11 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import Card from './Card';
 import DifficultyLevel from './DifficultyLevel';
 
 interface Props {
   taskName: string;
   difficulty: number;
-  description: string;
+  description: string | ReactNode;
   image: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
