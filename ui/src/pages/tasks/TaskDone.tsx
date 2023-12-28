@@ -2,18 +2,12 @@ import TasksList from '@components/TasksList';
 import CatsBalloons from '@icons/CatsBalloons.svg?react';
 import { Link } from 'react-router-dom';
 import { t } from 'i18next';
-import TaskService from 'services/TaskService';
-import { useQuery } from '@tanstack/react-query';
 import LoadingScreen from '@components/LoadingScreen';
 import paths from '@routes/paths';
-import { Task } from 'types/Task';
+import { useGetDoneTasksQuery } from 'api/tasks/hooks';
 
 export default function TaskDone() {
-  const tasksFetcher = new TaskService();
-  const { data, isLoading, isError } = useQuery<Task[]>({
-    queryKey: ['tasksDone'],
-    queryFn: tasksFetcher.getDoneTasks,
-  });
+  const { data, isLoading, isError } = useGetDoneTasksQuery();
 
   if (isLoading) return <LoadingScreen />;
   if (isError) return <div className="error">{t('firebase.unknown-error')}</div>;

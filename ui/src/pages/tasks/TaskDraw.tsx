@@ -2,22 +2,17 @@ import DrawingArea from '@components/DrawingArea';
 import { t } from 'i18next';
 import Button from '@components/Button';
 import TaskCard from '@components/TaskCard';
-import TaskService from 'services/TaskService';
-import { useQuery } from '@tanstack/react-query';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import LoadingScreen from '@components/LoadingScreen';
 import paths from '@routes/paths';
+import { useGetTaskQuery } from 'api/tasks/hooks';
 
 export default function TaskDraw() {
   const { id } = useParams();
   const startTime = new Date().getTime();
   const navigate = useNavigate();
 
-  const tasksFetcher = new TaskService();
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['task', id],
-    queryFn: () => tasksFetcher.getTask(Number(id)),
-  });
+  const { data, isLoading, isError } = useGetTaskQuery(Number(id));
 
   if (isLoading) return <LoadingScreen />;
   if (isError) return <div className="error">{t('firebase.unknown-error')}</div>;

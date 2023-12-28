@@ -12,7 +12,7 @@ export default function ResetPassword() {
   const [user] = useAuthState(auth);
 
   if (user) return <Navigate to={paths.ROOT} />;
-
   if (!oobCode || !mode) return <SendEmail />;
-  else return <ResetPasswordEmail oobCode={oobCode} />;
+
+  return <ResetPasswordEmail oobCode={oobCode} />;
 }

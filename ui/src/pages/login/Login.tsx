@@ -1,4 +1,4 @@
-import { auth, loginInWithEmailAndPassword } from '@lib/firebase';
+import { auth } from '@lib/firebase';
 import paths from '@routes/paths';
 import { Navigate, NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -10,31 +10,21 @@ import Form from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { loginRegisterSchema } from 'consts/validationSchemas';
-import { useMutation } from '@tanstack/react-query';
 import LoadingScreen from '@components/LoadingScreen';
-import { FirebaseError } from '@firebase/util';
-import { UserCredential } from '@firebase/auth';
 import AuthenticateLayout from 'layouts/AuthenticateLayout';
-
-interface LoginCredentials {
-  email: string;
-  password: string;
-}
+import { useLoginMutation } from 'api/auth/hooks';
+import { LoginRegisterForm } from 'types/Forms/Auth';
 
 export default function Login() {
   const [user] = useAuthState(auth);
 
-  const methods = useForm<LoginCredentials>({
+  const methods = useForm<LoginRegisterForm>({
     resolver: yupResolver(loginRegisterSchema),
   });
 
-  const { mutate, isSuccess, isPending, isError, error } = useMutation<UserCredential, FirebaseError, LoginCredentials>(
-    {
-      mutationFn: (values: LoginCredentials) => loginInWithEmailAndPassword(values.email, values.password),
-    }
-  );
+  const { mutate, isSuccess, isPending, isError, error } = useLoginMutation();
 
-  const handleLogin: SubmitHandler<LoginCredentials> = (data) => {
+  const handleLogin: SubmitHandler<LoginRegisterForm> = (data) => {
     mutate(data);
   };
 

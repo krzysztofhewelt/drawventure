@@ -8,9 +8,7 @@ export default function TaskFinished() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  if (!state) {
-    return <Navigate to={paths.ROOT} />;
-  }
+  if (!state) return <Navigate to={paths.ROOT} />;
 
   return (
     <div className="mx-auto flex flex-col items-center gap-4 text-center">

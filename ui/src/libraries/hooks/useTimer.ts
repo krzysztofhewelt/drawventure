@@ -13,5 +13,5 @@ export const useTimer = (initialStartTime: number) => {
     return () => clearInterval(interval.current);
   }, [startTime]);
 
-  return time;
+  return time / 1000;
 };

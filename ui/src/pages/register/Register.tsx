@@ -10,12 +10,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Password from '@components/Password';
 import { loginRegisterSchema } from 'consts/validationSchemas';
-import { useMutation } from '@tanstack/react-query';
 import LoadingScreen from '@components/LoadingScreen';
-import { UserCredential } from '@firebase/auth';
-import { FirebaseError } from '@firebase/util';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import AuthenticateLayout from 'layouts/AuthenticateLayout';
+import { useRegisterMutation } from 'api/auth/hooks';
 
 type RegisterData = {
   email: string;
@@ -29,13 +26,7 @@ export default function Register() {
     resolver: yupResolver(loginRegisterSchema),
   });
 
-  const { mutate, isSuccess, isPending, isError, error } = useMutation<
-    UserCredential | undefined,
-    FirebaseError,
-    RegisterData
-  >({
-    mutationFn: (values: RegisterData) => createUserWithEmailAndPassword(auth, values.email, values.password),
-  });
+  const { mutate, isSuccess, isPending, isError, error } = useRegisterMutation();
 
   const handleLogin: SubmitHandler<RegisterData> = (data) => {
     mutate(data);

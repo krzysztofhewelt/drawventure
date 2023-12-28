@@ -1,11 +1,6 @@
-import { auth } from '@lib/firebase';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { sendResetPasswordEmailSchema } from 'consts/validationSchemas';
-import { fetchSignInMethodsForEmail } from '@firebase/auth';
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { FirebaseError } from '@firebase/util';
-import { useMutation } from '@tanstack/react-query';
 import LoadingScreen from '@components/LoadingScreen';
 import { NavLink } from 'react-router-dom';
 import paths from '@routes/paths';
@@ -14,27 +9,17 @@ import Form from '@components/Form';
 import { t } from 'i18next';
 import Input from '@components/Input';
 import Button from '@components/Button';
-
-interface ResetPasswordEmail {
-  email: string;
-}
+import { useSendResetPasswordEmailMutation } from 'api/auth/hooks';
+import { ResetPasswordEmailForm } from 'types/Forms/Auth';
 
 const SendEmail = () => {
-  const methods = useForm<ResetPasswordEmail>({
+  const methods = useForm<ResetPasswordEmailForm>({
     resolver: yupResolver(sendResetPasswordEmailSchema),
   });
 
-  const findUserAndSendResetPasswordMail = async (email: string) => {
-    const user = await fetchSignInMethodsForEmail(auth, email);
-    if (user.length > 0) return sendPasswordResetEmail(auth, email);
-    else return Promise.reject(new FirebaseError('auth/user-not-found', 'Firebase: Error (auth/user-not-found).'));
-  };
+  const { mutate, isSuccess, isPending, isError, error } = useSendResetPasswordEmailMutation();
 
-  const { mutate, isSuccess, isPending, isError, error } = useMutation<void, FirebaseError, ResetPasswordEmail>({
-    mutationFn: (values: ResetPasswordEmail) => findUserAndSendResetPasswordMail(values.email),
-  });
-
-  const handleSubmit: SubmitHandler<ResetPasswordEmail> = (data) => {
+  const handleSubmit: SubmitHandler<ResetPasswordEmailForm> = (data) => {
     mutate(data);
   };
 

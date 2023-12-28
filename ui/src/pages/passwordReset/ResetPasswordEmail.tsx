@@ -4,34 +4,26 @@ import { t } from 'i18next';
 import Button from '@components/Button';
 import { NavLink } from 'react-router-dom';
 import paths from '@routes/paths';
-import { auth } from '@lib/firebase';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { confirmPasswordReset } from '@firebase/auth';
-import { FirebaseError } from '@firebase/util';
-import { useMutation } from '@tanstack/react-query';
 import LoadingScreen from '@components/LoadingScreen';
 import { changeResetPasswordSchema } from 'consts/validationSchemas';
 import Password from '@components/Password';
-
-interface ResetPasswordToken {
-  newPassword: string;
-}
+import { useResetPasswordMutation } from 'api/auth/hooks';
+import { ResetPasswordForm } from 'types/Forms/Auth';
 
 interface Props {
   oobCode: string;
 }
 
 const ResetPasswordEmail = ({ oobCode }: Props) => {
-  const methods = useForm<ResetPasswordToken>({
+  const methods = useForm<ResetPasswordForm>({
     resolver: yupResolver(changeResetPasswordSchema),
   });
 
-  const { mutate, isSuccess, isPending, isError, error } = useMutation<void, FirebaseError, ResetPasswordToken>({
-    mutationFn: (values: ResetPasswordToken) => confirmPasswordReset(auth, oobCode, values.newPassword),
-  });
+  const { mutate, isSuccess, isPending, isError, error } = useResetPasswordMutation(oobCode);
 
-  const handleSubmit: SubmitHandler<ResetPasswordToken> = (data) => {
+  const handleSubmit: SubmitHandler<ResetPasswordForm> = (data) => {
     mutate(data);
   };
 

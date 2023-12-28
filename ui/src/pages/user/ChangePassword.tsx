@@ -4,32 +4,23 @@ import Button from '@components/Button';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { changeResetPasswordSchema } from 'consts/validationSchemas';
-import { updatePassword } from 'firebase/auth';
-import { useMutation } from '@tanstack/react-query';
 import LoadingScreen from '@components/LoadingScreen';
 import { auth } from '@lib/firebase';
-import { FirebaseError } from '@firebase/util';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { t } from 'i18next';
-
-type ChangePassword = {
-  newPassword: string;
-};
+import { useChangePasswordMutation } from 'api/user/hooks';
+import { ChangePasswordForm } from 'types/Forms/Auth';
 
 export default function ChangePassword() {
   const [user] = useAuthState(auth);
 
-  const { mutate, isPending, isSuccess, isError, error } = useMutation<void, FirebaseError, ChangePassword>({
-    mutationFn: async (values: ChangePassword) => {
-      if (user) await updatePassword(user, values.newPassword);
-    },
-  });
-
-  const methods = useForm<ChangePassword>({
+  const methods = useForm<ChangePasswordForm>({
     resolver: yupResolver(changeResetPasswordSchema),
   });
 
-  const handleSubmit: SubmitHandler<ChangePassword> = (data) => {
+  const { mutate, isPending, isSuccess, isError, error } = useChangePasswordMutation(user);
+
+  const handleSubmit: SubmitHandler<ChangePasswordForm> = (data) => {
     mutate(data);
   };
 
