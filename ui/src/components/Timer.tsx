@@ -1,13 +1,13 @@
 import { useTimer } from '@lib/hooks/useTimer';
+import TimeFormat from '@components/TimeFormat';
 
-const Timer = ({startTime}: {startTime: number}) => {
+const Timer = ({ startTime, className }: { startTime: number; className?: string }) => {
   const time = useTimer(startTime);
-  const dateFormatter = new Intl.DateTimeFormat('pl', { minute: '2-digit', second: '2-digit' });
 
   return (
-    <>
-      {dateFormatter.format(time)}
-    </>
+    <div className={className}>
+      <TimeFormat time={time} normalFormat={true} />
+    </div>
   );
 };
 

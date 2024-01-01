@@ -16,15 +16,10 @@ export const loginRegisterSchema = yup.object().shape({
   password: password,
 });
 
-export const changePasswordSchema = yup.object().shape({
-  password: password,
-  newPassword: password.notOneOf([yup.ref('password')], 'validation.password.newSamePassword'),
+export const changeResetPasswordSchema = yup.object().shape({
+  newPassword: password,
 });
 
 export const sendResetPasswordEmailSchema = yup.object().shape({
   email: email,
-});
-
-export const resetPasswordSchema = yup.object().shape({
-  password: password,
 });

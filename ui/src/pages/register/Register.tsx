@@ -1,0 +1,56 @@
+import { NavLink, Navigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import paths from '@routes/paths';
+import { auth } from '@lib/firebase';
+import Input from '@components/Input';
+import Button from '@components/Button';
+import { t } from 'i18next';
+import Form from '@components/Form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Password from '@components/Password';
+import { loginRegisterSchema } from 'consts/validationSchemas';
+import LoadingScreen from '@components/LoadingScreen';
+import AuthenticateLayout from 'layouts/AuthenticateLayout';
+import { useRegisterMutation } from 'api/auth/hooks';
+
+type RegisterData = {
+  email: string;
+  password: string;
+};
+
+export default function Register() {
+  const [user] = useAuthState(auth);
+
+  const methods = useForm({
+    resolver: yupResolver(loginRegisterSchema),
+  });
+
+  const { mutate, isSuccess, isPending, isError, error } = useRegisterMutation();
+
+  const handleLogin: SubmitHandler<RegisterData> = (data) => {
+    mutate(data);
+  };
+
+  if (isPending) return <LoadingScreen />;
+  if (user || isSuccess) return <Navigate to={paths.ROOT} replace />;
+
+  return (
+    <AuthenticateLayout>
+      <Form formMethods={methods} className="flex w-full flex-col gap-3" onSubmit={handleLogin}>
+        <div className="error">{isError && t('firebase.' + error.code)}</div>
+        <Input name="email" placeholder={t('authenticateForms.email')} />
+        <Password name="password" placeholder={t('authenticateForms.password')} />
+
+        <Button type="submit" className="button_primary" text={t('button.register')} />
+
+        <p className="text-center">
+          {t('authenticateForms.alreadyRegister')}{' '}
+          <NavLink className="link_primary" to={paths.LOGIN}>
+            {t('authenticateForms.login')}
+          </NavLink>
+        </p>
+      </Form>
+    </AuthenticateLayout>
+  );
+}

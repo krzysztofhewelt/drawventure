@@ -4,13 +4,12 @@ interface Props {
   type: 'button' | 'submit' | 'reset' | undefined;
   text: string;
   className?: string;
-  disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button = ({ type, onClick, text, className, disabled }: Props) => {
+const Button = ({ type, onClick, text, className }: Props) => {
   return (
-    <button onClick={onClick} type={type} className={className} disabled={disabled}>
+    <button onClick={onClick} type={type} className={className}>
       {text}
     </button>
   );
@@ -19,7 +18,6 @@ const Button = ({ type, onClick, text, className, disabled }: Props) => {
 Button.defaultProps = {
   type: 'button',
   className: 'button_secondary',
-  disabled: false,
   text: 'button',
 };
 

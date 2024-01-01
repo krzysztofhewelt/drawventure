@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Hamburger from '@icons/Hamburger.svg?react';
 import paths from '@routes/paths';
 import { ReactNode, useState } from 'react';
-import { useOutsideClick } from '@lib/clickOutside';
+import { useOutsideClick } from '@lib/hooks/useClickOutside';
 import { t } from 'i18next';
 
 interface DrawerLinkProps {
@@ -64,6 +64,7 @@ const Drawer = () => {
           <DrawerLink path={paths.TASKS_DONE} textKey="drawer.tasksFinished" onClick={closeDrawer} />
           <DrawerLink path={paths.TASKS_TODO} textKey="drawer.checkTasks" onClick={closeDrawer} />
           <DrawerLink path={paths.PLAYGROUND} textKey="drawer.sandbox" onClick={closeDrawer} />
+          <DrawerLink path={paths.CHANGE_PASSWORD} textKey="drawer.changePassword" onClick={closeDrawer} />
           <a href="" className="link_secondary" onClick={logout}>
             {t('drawer.logout')}
           </a>

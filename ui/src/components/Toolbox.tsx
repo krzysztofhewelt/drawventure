@@ -5,7 +5,7 @@ import Pencil from '@icons/Pencil.svg?react';
 import Palette from '@icons/Palette.svg?react';
 import Download from '@icons/Download.svg?react';
 import classNames from 'classnames';
-import { useOutsideClick } from '@lib/clickOutside';
+import { useOutsideClick } from '@lib/hooks/useClickOutside';
 import { drawingMode } from 'consts/drawingMode';
 import { Color, DrawMode } from 'types/types';
 import { t } from 'i18next';
