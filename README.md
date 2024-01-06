@@ -41,7 +41,6 @@ Backend
 <td align="center">
 <a href="https://github.com/amelcer">
 <img width="64" height="64" src="https://avatars.githubusercontent.com/u/60044260?s=64&v=4" alt="Andrzej Melcer">
-
 Andrzej Melcer
 </a>
 </td>
