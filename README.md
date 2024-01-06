@@ -46,22 +46,19 @@ Andrzej Melcer
 </td>
 <td align="center">
 <a href="https://github.com/krzysztofhewelt">
-<img width="64" height="64" src="https://avatars.githubusercontent.com/u/24493324?v=4" alt="krzysztofhewelt">
-
+<img width="64" height="64" src="https://avatars.githubusercontent.com/u/24493324?v=4" alt="krzysztofhewelt"><br>
 krzysztofhewelt
 </a>
 </td>
 <td align="center">
 <a href="https://github.com/juliuszlosinski">
-<img width="64" height="64" src="https://avatars.githubusercontent.com/u/72278818?v=4" alt="Juliusz Łosiński">
-
+<img width="64" height="64" src="https://avatars.githubusercontent.com/u/72278818?v=4" alt="Juliusz Łosiński"><br>
 Juliusz Łosiński
 </a>
 </td>
 <td align="center">
 <a href="https://github.com/VeRonikARoNik">
-<img width="64" height="64" src="https://avatars.githubusercontent.com/u/76017554?s=64&v=4" alt="Juliusz Łosiński">
-
+<img width="64" height="64" src="https://avatars.githubusercontent.com/u/76017554?s=64&v=4" alt="Juliusz Łosiński"><br>
 VeRonikARoNik
 </a>
 </td>
