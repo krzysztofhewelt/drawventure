@@ -51,7 +51,7 @@ def classify():
     time = request.form.get('time')
     image = request.files['image']
     
-    path_to_image = "./last_image.png"
+    path_to_image = "./logs/last_image.png"
     if image and allowed_file(image.filename):
         image.save(path_to_image)
     else:

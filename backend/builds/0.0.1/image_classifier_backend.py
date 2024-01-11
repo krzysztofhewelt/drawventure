@@ -6,7 +6,7 @@ import firebase_storage_handler as fsh
 
 cnn_primitives_model = cnh.CNN_Model(
     model_name = "Primitives_classifier",
-    path_to_model="./models_ready_to_use/primitives_cnn_model.keras", 
+    path_to_model="./models_implementation/primitives_cnn_model.keras", 
     class_names={0: 'circle', 1: 'elipse', 2: 'rectangle', 3: 'square', 4: 'triangle'},
     trained_input_dimension=(64, 64)
 )
@@ -14,7 +14,7 @@ cnn_primitives_model.load()
 
 cnn_digits_model = cnh.CNN_Model(
     model_name = "Digits_classfier",
-    path_to_model="./models_ready_to_use/digits_cnn_model.keras",
+    path_to_model="./models_implementation/digits_cnn_model.keras",
     class_names={0:'0', 1:'1', 2:'2', 3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8', 9:'9'},
     trained_input_dimension=(28, 28)
 )
@@ -51,7 +51,7 @@ def classify():
     time = request.form.get('time')
     image = request.files['image']
     
-    path_to_image = "./last_image.png"
+    path_to_image = "./logs/last_image.png"
     if image and allowed_file(image.filename):
         image.save(path_to_image)
     else:
