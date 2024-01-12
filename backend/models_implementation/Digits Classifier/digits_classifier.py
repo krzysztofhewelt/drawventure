@@ -6,6 +6,9 @@ from keras.layers import Activation
 from keras.layers import Flatten
 from keras.layers import Dense
 from keras.layers import Softmax
+from keras.models import load_model
+from keras.preprocessing.image import load_img
+import numpy as np
 
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
@@ -45,6 +48,22 @@ cnn_model.fit(
     X_train, y_train, validation_data=(X_test, y_test), epochs=3
 )
 
-cnn_model.save("digits_cnn_model.keras")
-cnn_model.save_weights("digits_cnn_model_weights.h5")
+cnn_model.save("./digits_cnn_model.keras")
+cnn_model.save_weights("./digits_cnn_model_weights.h5")
+
 number_of_channels=1
+
+# Loading CNN model.
+cnn_model = load_model("./digits_cnn_model.keras")
+
+# Loading square
+image = load_img("./testing_data/1.png", target_size=(28, 28), color_mode="grayscale")
+img = np.array(image)
+img = img/255.0
+img = img.reshape(1, 28, 28, number_of_channels)
+
+output_label = cnn_model.predict(img)
+print(f"Outputp label: {output_label}")
+
+cnn_model.save("../../models_ready_to_use/digits_cnn_model.keras")
+cnn_model.save_weights("../../models_ready_to_use/digits_cnn_model_weights.h5")
