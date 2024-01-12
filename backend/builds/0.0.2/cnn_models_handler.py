@@ -14,7 +14,7 @@ class CNN_Model:
         """
         Initializng fundamentals fields.
         """
-        self.path_to_log_file = f"./logs/{model_name}.log"
+        self.path_to_log_file = f"{model_name}.log"
         self.path_to_model = path_to_model
         self.class_names = class_names
         self.trained_input_dimension = trained_input_dimension

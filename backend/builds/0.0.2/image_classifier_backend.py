@@ -51,7 +51,7 @@ def classify():
     time = request.form.get('time')
     image = request.files['image']
     
-    path_to_image = "./logs/last_image.png"
+    path_to_image = "last_image.png"
     if image and allowed_file(image.filename):
         image.save(path_to_image)
     else:
@@ -104,4 +104,4 @@ def add_score():
     return "Score was added!"
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", debug=True, port=80)
