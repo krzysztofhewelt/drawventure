@@ -60,8 +60,8 @@ cnn_model.fit(training_data,
 )
 
 cnn_model.save("./primitives_cnn_model.keras")
-cnn_model.save_weights("./primitives_cnn_model.h5")
-cnn_model.save("../../models_ready_to_use/primitives_cnn_model_weights.keras")
+cnn_model.save("../../models_ready_to_use/primitives_cnn_model.keras")
+cnn_model.save_weights("./primitives_cnn_model_weights.h5")
 cnn_model.save_weights("../../models_ready_to_use/primitives_cnn_model_weights.h5")
 
 # TESTING

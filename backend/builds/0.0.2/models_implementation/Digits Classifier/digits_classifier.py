@@ -49,7 +49,9 @@ cnn_model.fit(
 )
 
 cnn_model.save("./digits_cnn_model.keras")
+cnn_model.save("../../models_ready_to_use/digits_cnn_model.keras")
 cnn_model.save_weights("./digits_cnn_model_weights.h5")
+cnn_model.save_weights("../../models_ready_to_use/digits_cnn_model_weights.h5")
 
 number_of_channels=1
 
@@ -63,7 +65,4 @@ img = img/255.0
 img = img.reshape(1, 28, 28, number_of_channels)
 
 output_label = cnn_model.predict(img)
-print(f"Outputp label: {output_label}")
-
-cnn_model.save("../../models_ready_to_use/digits_cnn_model.keras")
-cnn_model.save_weights("../../models_ready_to_use/digits_cnn_model_weights.h5")
+print(f"Output label: {output_label}")
