@@ -19,11 +19,9 @@ export default function TaskDraw() {
 
   const { data: taskData, isLoading: taskLoading, isError: taskError } = useGetTaskQuery(Number(id));
   const {
-    mutate: resultMutate,
-    data: resultData,
+    mutateAsync: resultMutate,
     isPending: resultLoading,
     isError: resultError,
-    isSuccess: resultSuccess,
   } = useSendImageForResultMutation();
 
   if (taskLoading || resultLoading) return <LoadingScreen />;
@@ -48,18 +46,26 @@ export default function TaskDraw() {
     console.log('calculated', calculatedTime);
     console.log('finalTime', finalTime);
 
-    if (image && id) {
-      resultMutate({
+    if (!image || !id) {
+      return
+
+    }
+
+    try {
+      const resultData = await resultMutate({
         image: image,
         taskId: id,
-        time: calculatedTime,
+        time: String(calculatedTime),
         label: taskData?.label,
         type: taskData?.type,
       });
+
+      navigate(paths.TASK_FINISHED, { state: { id: id, time: calculatedTime, accuracy: resultData?.accuracy * 100 } });
+    } catch (e) {
+      // handle error
     }
 
-    if (resultSuccess)
-      navigate(paths.TASK_FINISHED, { state: { id: id, time: calculatedTime, accuracy: resultData?.accuracy * 100 } });
+
   };
 
   return (
