@@ -12,7 +12,6 @@ import { convertImageToBlob } from '@lib/downloadImage';
 
 export default function TaskDraw() {
   const [startTime] = useState(new Date().getTime());
-  const [finalTime, setFnTime] = useState<string>();
   const { id } = useParams();
   const navigate = useNavigate();
   const ref = React.createRef<ReactSketchCanvasRef>();
@@ -39,12 +38,6 @@ export default function TaskDraw() {
   const handleSubmit = async () => {
     const calculatedTime = (new Date().getTime() - startTime) / 1000;
     const image = await getImageBlob();
-
-    setFnTime('dupa');
-
-    console.log('startTime', startTime);
-    console.log('calculated', calculatedTime);
-    console.log('finalTime', finalTime);
 
     if (!image || !id) {
       return
