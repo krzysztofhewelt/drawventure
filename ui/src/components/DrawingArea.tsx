@@ -1,5 +1,5 @@
 import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas';
-import React, { useState } from 'react';
+import React, { RefObject, useState } from 'react';
 import Toolbox from './Toolbox';
 import { Color } from 'types/types';
 import { colors } from 'consts/color';
@@ -8,10 +8,11 @@ import Timer from '@components/Timer';
 
 interface Props {
   timer?: number;
+  sketchRef?: RefObject<ReactSketchCanvasRef>;
 }
 
-const DrawingArea = ({ timer }: Props) => {
-  const canvas = React.createRef<ReactSketchCanvasRef>();
+const DrawingArea = ({ sketchRef, timer }: Props) => {
+  const canvas = sketchRef ? sketchRef : React.createRef<ReactSketchCanvasRef>();
   const [color, setColor] = useState<Color>(colors.black);
   const [colorBeforeErase, setColorBeforeErase] = useState<Color>(colors.black);
 

@@ -79,16 +79,20 @@ export const getTask = async (id: number): Promise<Task | null> => {
 };
 
 // send task to the backend
-export const sendImageForResult = async (image: string, taskId: string, time: string) => {
+export const sendImageForResult = async (image: Blob, taskId: string, time: string, label: string, type: string) => {
   const formData = new FormData();
   formData.append('image', image);
   formData.append('taskId', taskId);
   formData.append('time', time);
+  formData.append('label', label);
+  formData.append('type', type);
 
   const options = {
     method: 'POST',
     body: formData,
   };
 
-  return await fetch(import.meta.env.VITE_BACKEND_URL, options);
+  return await fetch(import.meta.env.VITE_BACKEND_URL, options).then((res) => {
+    return res.json();
+  });
 };

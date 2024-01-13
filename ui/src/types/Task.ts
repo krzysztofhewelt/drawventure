@@ -4,4 +4,6 @@ export interface Task {
   description: string;
   image: string;
   difficulty: number;
+  label: string;
+  type: string;
 }
