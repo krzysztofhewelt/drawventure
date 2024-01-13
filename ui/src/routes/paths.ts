@@ -7,7 +7,6 @@ export default {
   TASKS_TODO: '/tasks',
   TASKS_DONE: '/tasks/done',
   TASK_DRAW: '/tasks/:id',
-  PRIVACY: '/privacy',
   CHANGE_PASSWORD: '/change-password',
   PASSWORD_RESET: '/reset-password',
 };

@@ -18,7 +18,8 @@ export default function TaskFinished() {
         <div>
           {t('tasks.sketchingTime')} <TimeFormat time={state?.time} />
         </div>
-        <div>{t('tasks.sketchingAccuracy', { accuracy: state?.accuracy })}</div>
+        <div>{t('tasks.sketchingAccuracy', { accuracy: Math.round(state?.accuracy) })}</div>
+        <div>{t('tasks.score', { score: state?.score })}</div>
       </div>
       <Link to={paths.TASKS_DONE} className="link_secondary">
         {t('tasks.checkSelfResults')} &rarr;

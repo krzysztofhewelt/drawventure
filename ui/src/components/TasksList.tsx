@@ -34,6 +34,7 @@ const TasksList = ({ tasks }: { tasks?: Task[] | TaskScore[] }) => {
                       {t('tasks.sketchingTime')} <TimeFormat time={el.time} />
                     </div>
                     <div>{t('tasks.sketchingAccuracy', { accuracy: el.accuracy })}</div>
+                    <div>{t('tasks.score', { score: el.score })}</div>
                     <div className="font-bold">{t('tasks.tryAgain')} &rarr;</div>
                   </div>
                 )) ||

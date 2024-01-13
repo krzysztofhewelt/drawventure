@@ -8,7 +8,6 @@ import Playground from 'pages/playground/Playground';
 import TaskDraw from 'pages/tasks/TaskDraw';
 import TaskTodo from 'pages/tasks/TaskTodo';
 import TaskDone from 'pages/tasks/TaskDone';
-import Privacy from 'pages/privacy/Privacy';
 import TaskFinished from 'pages/tasks/TaskFinished';
 import ChangePassword from 'pages/user/ChangePassword';
 import NotFound from 'pages/NotFound';
@@ -24,7 +23,6 @@ export const router = createBrowserRouter(
         <Route element={<TaskDone />} path={paths.TASKS_DONE} />
         <Route element={<TaskDraw />} path={paths.TASK_DRAW} />
         <Route element={<TaskFinished />} path={paths.TASK_FINISHED} />
-        <Route element={<Privacy />} path={paths.PRIVACY} />
         <Route element={<ChangePassword />} path={paths.CHANGE_PASSWORD} />
       </Route>
       <Route element={<Login />} path={paths.LOGIN} />

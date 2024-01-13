@@ -5,23 +5,19 @@ import TaskCard from '@components/TaskCard';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import LoadingScreen from '@components/LoadingScreen';
 import paths from '@routes/paths';
-import { useGetTaskQuery, useSendImageForResultMutation } from 'api/tasks/hooks';
+import { useClassifyImageMutation, useGetTaskQuery } from 'api/tasks/hooks';
 import { ReactSketchCanvasRef } from 'react-sketch-canvas';
-import React, { useState } from 'react';
+import React from 'react';
 import { convertImageToBlob } from '@lib/downloadImage';
 
 export default function TaskDraw() {
-  const [startTime] = useState(new Date().getTime());
+  const startTime = new Date().getTime();
   const { id } = useParams();
   const navigate = useNavigate();
   const ref = React.createRef<ReactSketchCanvasRef>();
 
   const { data: taskData, isLoading: taskLoading, isError: taskError } = useGetTaskQuery(Number(id));
-  const {
-    mutateAsync: resultMutate,
-    isPending: resultLoading,
-    isError: resultError,
-  } = useSendImageForResultMutation();
+  const { mutateAsync: resultMutate, isPending: resultLoading, isError: resultError } = useClassifyImageMutation();
 
   if (taskLoading || resultLoading) return <LoadingScreen />;
   if (taskError || resultError) return <div className="error">{t('firebase.unknown-error')}</div>;
@@ -29,36 +25,27 @@ export default function TaskDraw() {
 
   const getImageBlob = async () => {
     const image = ref.current?.exportImage;
-
     if (image) return convertImageToBlob(await image('png'));
-
     return null;
   };
 
   const handleSubmit = async () => {
-    const calculatedTime = (new Date().getTime() - startTime) / 1000;
+    const elapsedTime = (new Date().getTime() - startTime) / 1000;
     const image = await getImageBlob();
 
-    if (!image || !id) {
-      return
+    if (!image || !id) return;
 
-    }
+    const resultData = await resultMutate({
+      image: image,
+      taskId: id,
+      time: elapsedTime.toString(),
+      label: taskData?.label,
+      type: taskData?.type,
+    });
 
-    try {
-      const resultData = await resultMutate({
-        image: image,
-        taskId: id,
-        time: String(calculatedTime),
-        label: taskData?.label,
-        type: taskData?.type,
-      });
-
-      navigate(paths.TASK_FINISHED, { state: { id: id, time: calculatedTime, accuracy: resultData?.accuracy * 100 } });
-    } catch (e) {
-      // handle error
-    }
-
-
+    navigate(paths.TASK_FINISHED, {
+      state: { id: id, time: elapsedTime, accuracy: resultData?.accuracy * 100, score: resultData?.score },
+    });
   };
 
   return (

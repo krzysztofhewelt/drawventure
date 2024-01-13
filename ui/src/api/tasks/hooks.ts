@@ -1,15 +1,8 @@
-import { UseMutationOptions, useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { Task } from 'types/Task';
-import { getDoneTasks, getTask, getTodoTasks, sendImageForResult } from 'api/tasks/requests';
+import { classifyImage, getDoneTasks, getTask, getTodoTasks } from 'api/tasks/requests';
 import { TaskScore } from 'types/TaskScore';
-
-interface ClassifyRequest {
-  image: Blob;
-  taskId: string;
-  time: string;
-  label: string;
-  type: string;
-}
+import { ClassifyImageRequest, ClassifyImageResponse } from '../../types/Requests/ClassifyImage';
 
 export const useGetDoneTasksQuery = () => {
   return useQuery<TaskScore[]>({
@@ -32,15 +25,9 @@ export const useGetTaskQuery = (id: number) => {
   });
 };
 
-
-// TODO:
-// define this result for sendImageForResult in ui/src/api/tasks/requests.ts
-type SendImageForResult = unknown
-
-export const useSendImageForResultMutation = (options?: Omit<UseMutationOptions<SendImageForResult, unknown, ClassifyRequest>, 'mutationFn'>) => {
-  return useMutation({
-    mutationFn: (values: ClassifyRequest) =>
-      sendImageForResult(values.image, values.taskId, values.time, values.label, values.type),
-      ...options
+export const useClassifyImageMutation = () => {
+  return useMutation<ClassifyImageResponse, Error, ClassifyImageRequest>({
+    mutationFn: (values: ClassifyImageRequest) =>
+      classifyImage(values.image, values.taskId, values.time, values.label, values.type),
   });
 };

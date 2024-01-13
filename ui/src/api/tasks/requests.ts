@@ -5,6 +5,7 @@ import { db } from '@lib/firebase';
 import { fsDataConverter } from 'consts/fsDataConverter';
 import { TaskScore } from 'types/TaskScore';
 import { Task } from 'types/Task';
+import { ClassifyImageResponse } from '../../types/Requests/ClassifyImage';
 
 export const getDoneTasksIds = (userScores: QuerySnapshot<Score>): number[] => {
   const tasksIds = new Set<number>();
@@ -79,7 +80,13 @@ export const getTask = async (id: number): Promise<Task | null> => {
 };
 
 // send task to the backend
-export const sendImageForResult = async (image: Blob, taskId: string, time: string, label: string, type: string) => {
+export const classifyImage = async (
+  image: Blob,
+  taskId: string,
+  time: string,
+  label: string,
+  type: string
+): Promise<ClassifyImageResponse> => {
   const formData = new FormData();
   formData.append('image', image);
   formData.append('taskId', taskId);
@@ -93,6 +100,6 @@ export const sendImageForResult = async (image: Blob, taskId: string, time: stri
   };
 
   return await fetch(import.meta.env.VITE_BACKEND_URL, options).then((res) => {
-    return res.json();
+    return res.json() as Promise<ClassifyImageResponse>;
   });
 };
