@@ -16,6 +16,7 @@ Simple game that user must draw given figure as fast and precisely as possible. 
 * user can do simple tasks - draw given figure
 * tasks are divided into three levels of difficulty: easy, medium, hard
 * AI (backend) rates drawings
+* AI models is trained to detect primitives (ex. circle, rectangle, triangle) and digits
 * ability to change pen color, eraser and download drawing
 * playground for non-limit drawing
 * directed to kids in age 4+
@@ -95,7 +96,10 @@ Design: Figma
 
 ## Backend
 * Python
-* ...
+* Flask for REST API
+* Keras for Digits and Primitives Classifier
+* NumPy
+* firebase_admin
 
 # Screenshots
 <img src="screenshots/login.png" alt="login page">
