@@ -104,17 +104,3 @@ Design: Figma
 <img src="screenshots/drawing.png" alt="drawing page">
 <img src="screenshots/task_done.png" alt="task done page">
 <img src="screenshots/task_scores.png" alt="task done list with score page">
-
-# Frontend TODO
-- privacy policy page
-- colorful timer depends on best time
-- scoreboard to design and implementation
-- animations
-- ~~password reset pages~~
-- ~~change password page~~
-- ~~no tasks done information~~
-- ~~improve TaskCard description for showing results~~
-- ~~react-query and requests to Firebase~~
-- ~~loading view~~
-- ~~error pages (404, 500, ...)~~
-- ~~fix Header pageNames match with params route~~
