@@ -30,5 +30,8 @@ export const router = createBrowserRouter(
       <Route element={<ResetPassword />} path={paths.PASSWORD_RESET} />
       <Route element={<NotFound />} path="*" />
     </Route>
-  )
+  ),
+  {
+    basename: import.meta.env.VITE_BASE_URL,
+  }
 );
