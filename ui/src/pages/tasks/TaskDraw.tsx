@@ -9,12 +9,15 @@ import { useClassifyImageMutation, useGetTaskQuery } from 'api/tasks/hooks';
 import { ReactSketchCanvasRef } from 'react-sketch-canvas';
 import React from 'react';
 import { convertImageToBlob } from '@lib/downloadImage';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@lib/firebase';
 
 export default function TaskDraw() {
   const startTime = new Date().getTime();
   const { id } = useParams();
   const navigate = useNavigate();
   const ref = React.createRef<ReactSketchCanvasRef>();
+  const [user] = useAuthState(auth);
 
   const { data: taskData, isLoading: taskLoading, isError: taskError } = useGetTaskQuery(Number(id));
   const { mutateAsync: resultMutate, isPending: resultLoading, isError: resultError } = useClassifyImageMutation();
@@ -39,8 +42,7 @@ export default function TaskDraw() {
       image: image,
       taskId: id,
       time: elapsedTime.toString(),
-      label: taskData?.label,
-      type: taskData?.type,
+      userUid: (user?.uid) ? user.uid : '',
     });
 
     navigate(paths.TASK_FINISHED, {

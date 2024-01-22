@@ -28,6 +28,6 @@ export const useGetTaskQuery = (id: number) => {
 export const useClassifyImageMutation = () => {
   return useMutation<ClassifyImageResponse, Error, ClassifyImageRequest>({
     mutationFn: (values: ClassifyImageRequest) =>
-      classifyImage(values.image, values.taskId, values.time, values.label, values.type),
+      classifyImage(values.image, values.taskId, values.time, values.userUid),
   });
 };

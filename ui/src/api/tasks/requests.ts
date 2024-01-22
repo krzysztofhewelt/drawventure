@@ -84,15 +84,13 @@ export const classifyImage = async (
   image: Blob,
   taskId: string,
   time: string,
-  label: string,
-  type: string
+  userUid: string
 ): Promise<ClassifyImageResponse> => {
   const formData = new FormData();
   formData.append('image', image);
   formData.append('taskId', taskId);
   formData.append('time', time);
-  formData.append('label', label);
-  formData.append('type', type);
+  formData.append('userUid', userUid);
 
   const options = {
     method: 'POST',
