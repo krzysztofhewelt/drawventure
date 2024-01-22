@@ -8,7 +8,8 @@
     "task": {
       "checkOther": "Sprawdź inne zadania",
       "tryAgain": "Spróbuj ponownie",
-      "checkTasks": "Podejmij się zadania"
+      "checkTasks": "Podejmij się zadania",
+      "checkTasksFinished": "Przejrzyj zrobione zadania"
     }
   },
   "toolbox": {
@@ -55,9 +56,11 @@
     "goodJob": "Świetna robota",
     "sketchingTime": "Zrobiłeś to w czasie:",
     "sketchingAccuracy": "Dokładność odwzorowania: {{accuracy}}%",
+    "score": "Otrzymanych punktów: {{score}}",
     "checkSelfResults": "Sprawdź swoje wyniki",
     "tryAgain": "Spróbuj jeszcze raz",
-    "noTasksFinished": "Jeszcze nie udało Ci się zrealizować żadnego zadania",
+    "noTasksFinished": "Jeszcze nie udało Ci się zrealizować żadnego zadania.",
+    "noTasksTodo": "Nie ma żadnych nowych zadań do zrobienia. Poczekaj na nowe.",
     "noTasks": "Brak zadań. Sprawdź inny poziom trudności."
   },
   "pageNames": {
@@ -68,7 +71,6 @@
     "taskFinished": "Wykonałeś zadanie",
     "taskFinishedList": "Tak poradziłeś sobie z zadaniami",
     "playground": "Baw się dobrze!",
-    "privacy": "Polityka prywatności",
     "changePassword": "Zmiana hasła"
   },
   "validation": {

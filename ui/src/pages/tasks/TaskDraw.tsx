@@ -5,40 +5,64 @@ import TaskCard from '@components/TaskCard';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import LoadingScreen from '@components/LoadingScreen';
 import paths from '@routes/paths';
-import { useGetTaskQuery } from 'api/tasks/hooks';
+import { useClassifyImageMutation, useGetTaskQuery } from 'api/tasks/hooks';
+import { ReactSketchCanvasRef } from 'react-sketch-canvas';
+import React from 'react';
+import { convertImageToBlob } from '@lib/downloadImage';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@lib/firebase';
 
 export default function TaskDraw() {
-  const { id } = useParams();
   const startTime = new Date().getTime();
+  const { id } = useParams();
   const navigate = useNavigate();
+  const ref = React.createRef<ReactSketchCanvasRef>();
+  const [user] = useAuthState(auth);
 
-  const { data, isLoading, isError } = useGetTaskQuery(Number(id));
+  const { data: taskData, isLoading: taskLoading, isError: taskError } = useGetTaskQuery(Number(id));
+  const { mutateAsync: resultMutate, isPending: resultLoading, isError: resultError } = useClassifyImageMutation();
 
-  if (isLoading) return <LoadingScreen />;
-  if (isError) return <div className="error">{t('firebase.unknown-error')}</div>;
-  if (!data) return <Navigate to={paths.ROOT} />;
+  if (taskLoading || resultLoading) return <LoadingScreen />;
+  if (taskError || resultError) return <div className="error">{t('firebase.unknown-error')}</div>;
+  if (!taskData) return <Navigate to={paths.ROOT} />;
 
-  const handleSubmit = () => {
-    const date = (new Date().getTime() - startTime) / 1000;
-    // *************************
-    // REQUEST DO BACKENDU
-    // *************************
-    navigate(paths.TASK_FINISHED, { state: { id: id, time: date, accuracy: 90 } });
+  const getImageBlob = async () => {
+    const image = ref.current?.exportImage;
+    if (image) return convertImageToBlob(await image('png'));
+    return null;
+  };
+
+  const handleSubmit = async () => {
+    const elapsedTime = (new Date().getTime() - startTime) / 1000;
+    const image = await getImageBlob();
+
+    if (!image || !id) return;
+
+    const resultData = await resultMutate({
+      image: image,
+      taskId: id,
+      time: elapsedTime.toString(),
+      userUid: (user?.uid) ? user.uid : '',
+    });
+
+    navigate(paths.TASK_FINISHED, {
+      state: { id: id, time: elapsedTime, accuracy: resultData?.accuracy * 100, score: resultData?.score },
+    });
   };
 
   return (
     <div className="mx-auto flex w-3/4 flex-col gap-10">
       <div className="flex h-screen">
-        <DrawingArea timer={startTime} />
+        <DrawingArea sketchRef={ref} timer={startTime} />
       </div>
 
       <Button type="submit" className="button_primary w-full" text={t('button.submit')} onClick={handleSubmit} />
 
       <TaskCard
-        taskName={data?.name}
-        difficulty={data?.difficulty}
-        description={data?.description}
-        image={data?.image}
+        taskName={taskData?.name}
+        difficulty={taskData?.difficulty}
+        description={taskData?.description}
+        image={taskData?.image}
       />
     </div>
   );

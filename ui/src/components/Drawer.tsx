@@ -68,7 +68,6 @@ const Drawer = () => {
           <a href="" className="link_secondary" onClick={logout}>
             {t('drawer.logout')}
           </a>
-          <DrawerLink path={paths.PRIVACY} textKey="drawer.privacyPolicy" onClick={closeDrawer} />
         </div>
       </div>
     </>
