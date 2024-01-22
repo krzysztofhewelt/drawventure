@@ -49,9 +49,6 @@ print(f"Task with id: {record}")
 app = Flask(__name__)
 CORS(app)
 
-def allowed_file(file_name):
-    return '.' in file_name and file_name.rsplit('.', 1)[1] in {'png', 'jpg', 'jpeg'}
-
 # Default Web Page/ Home
 @app.route("/")
 def hello():
@@ -77,10 +74,6 @@ def classify():
     image = request.files['image']
     path_to_image = "last_image.png"
     print(f"LOG:: TaskID: {taskId}, UserUid: {userUid}, type: {type_of_image}, label: {label_of_image}, image: {image}\n")
-    if image and allowed_file(image.filename):
-        image.save(path_to_image)
-    else:
-        return "Wrong format of image!"
     match type_of_image:
         case "primitive":
             prediction = cnn_primitives_model.predict(path_to_image)
