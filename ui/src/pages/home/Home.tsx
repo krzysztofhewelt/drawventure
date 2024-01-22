@@ -2,6 +2,9 @@ import Card from '@components/Card';
 import { t } from 'i18next';
 import paths from '@routes/paths';
 import { useNavigate } from 'react-router-dom';
+import DogPaw from '@icons/DogPaw.svg';
+import PlayfulCatOne from '@icons/PlayfulCatOne.svg';
+import PlayfulCatTwo from '@icons/PlayfulCatTwo.svg';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ export default function Home() {
           className="flex-1 rounded-normal bg-white shadow-extra hover:cursor-pointer"
           header={t('mainPageCards.availableTasksTitle')}
           description={t('mainPageCards.availableTasksDescription')}
-          image="/src/assets/icons/DogPaw.svg"
+          image={DogPaw}
           imagePosition="right"
           onClick={() => navigate(paths.TASKS_TODO)}
         />
@@ -22,7 +25,7 @@ export default function Home() {
           className="flex-1 rounded-normal bg-white shadow-extra hover:cursor-pointer"
           header={t('mainPageCards.finishedTasksTitle')}
           description={t('mainPageCards.finishedTasksDescription')}
-          image="/src/assets/icons/PlayfulCatOne.svg"
+          image={PlayfulCatOne}
           imagePosition="right"
           onClick={() => navigate(paths.TASKS_DONE)}
         />
@@ -31,7 +34,7 @@ export default function Home() {
           className="flex-1 rounded-normal bg-white shadow-extra hover:cursor-pointer"
           header={t('mainPageCards.sandboxTitle')}
           description={t('mainPageCards.sandboxDescription')}
-          image="/src/assets/icons/PlayfulCatTwo.svg"
+          image={PlayfulCatTwo}
           imagePosition="right"
           onClick={() => navigate(paths.PLAYGROUND)}
         />
