@@ -88,18 +88,18 @@ def classify():
     else:
         if float(time) == 0:
             time = 1
-        score_value = 100/float(time) * float(prediction["accuracy"])
+        score_value = float(time) * 10 + float(prediction["accuracy"]) * 3
     score = {
-        'accuracy': prediction["accuracy"], 
-        'score': score_value,
-        'taskId': taskId,
-        'time': time,
-        'userUid': userUid,
+        "accuracy": prediction["accuracy"],
+        "score": score_value,
+        "taskId": taskId,
+        "time": time,
+        "userUid": userUid,
     }
     print(f"LOG::RESULT = {score}, score value: {score_value}")
     firebase_handler.delete_record(collection_name="scores", key_1="userUid", value_1=userUid, key_2="taskId", value_2=taskId)
     firebase_handler.post_document(collection_name="scores", document_data=score)
-    return f"Added: {score}"
+    return score
 
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
