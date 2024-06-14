@@ -7,7 +7,6 @@ Simple game that user must draw given figure as fast and precisely as possible. 
 <p align="center">
     <a href="#features">Features</a>&nbsp;&nbsp; | &nbsp;
     <a href="#contributors">Contributors</a>&nbsp; | &nbsp;
-    <a href="#getting-started">Getting started</a>&nbsp; | &nbsp;
     <a href="#screenshots">Screenshots</a>&nbsp; | &nbsp;
     <a href="#used-technologies">Technologies</a>
 </p>
@@ -69,13 +68,7 @@ VeRonikARoNik
 
 # Getting started
 This app requires [Firebase](https://firebase.google.com/) database provided by Google. You can use your Google account to create database for free.
-
-1. Clone this repo
-```
-git clone https://github.com/krzysztofhewelt/drawventure.git .
-```
-
-... todo ...
+Install all needed packages (Python) and dependencies (ui).
 
 # Used technologies
 ## Frontend
